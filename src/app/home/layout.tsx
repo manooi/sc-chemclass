@@ -2,11 +2,11 @@ import Image from "next/image";
 import chemPic from "@/public/image/logo.png";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-    const imageStyle = {
-      position: 'absolute',
-      right: '30%',
-      bottom: '10%',
-      width: '30%'
+    const imageStyle: React.CSSProperties = {
+      position: "absolute",
+      right: "30%",
+      bottom: "10%",
+      width: "30%",
       // transform: 'translate(60%, 0)'
     };
     
