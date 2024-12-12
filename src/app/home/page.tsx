@@ -3,6 +3,7 @@ import { IoHomeOutline } from "react-icons/io5";
 import { MdOutlineLaptopChromebook } from "react-icons/md";
 import { IoNewspaperOutline } from "react-icons/io5";
 import { GrChatOption } from "react-icons/gr";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -53,18 +54,25 @@ export default function Home() {
             </div>
           </div>
 
-          <MenuButton>
-            <IoHomeOutline size={25} className="ml-5 mr-6" />
-            Home
-          </MenuButton>
-          <MenuButton>
-            <MdOutlineLaptopChromebook size={25} className="ml-5 mr-6" />
-            My Lessons
-          </MenuButton>
+          <Link href="/home">
+            <MenuButton>
+              <IoHomeOutline size={25} className="ml-5 mr-6" />
+              Home
+            </MenuButton>
+          </Link>
+
+          <Link href="/my-lessons">
+            <MenuButton>
+              <MdOutlineLaptopChromebook size={25} className="ml-5 mr-6" />
+              My Lessons
+            </MenuButton>
+          </Link>
+
           <MenuButton>
             <IoNewspaperOutline size={25} className="ml-5 mr-6" />
             Assignments
           </MenuButton>
+          
           <MenuButton>
             <GrChatOption size={25} className="ml-5 mr-6" />
             Forum
