@@ -1,11 +1,23 @@
+"use client";
+
 import { MdOutlineLaptopChromebook } from "react-icons/md";
 import Image from "next/image";
 import Link from "next/link";
 import { IoHomeOutline } from "react-icons/io5";
+import { useRouter } from "next/navigation";
+import { LESSONS } from "./lessons";
+import BottomNavigation from "./bottom-navigation";
 
 function LessonBox({ title, no }: { title: string; no: number }) {
+  const router = useRouter();
+
+  function goToLesson(no: number) {
+    router.push(`/my-lessons/${no}`);
+  }
+
   return (
     <div
+      onClick={() => goToLesson(no)}
       className="md:w-[30%] h-[15rem] bg-[#84C55A] text-3xl rounded-lg flex flex-col justify-around items-center
       cursor-pointer
       hover:scale-105 
@@ -13,13 +25,7 @@ function LessonBox({ title, no }: { title: string; no: number }) {
       duration-200
       hover:shadow-xl"
     >
-      <Image
-        src={`/image/${no}.png`}
-        alt=""
-        height={80}
-        width={80}
-        // style={{ width: "auto" }}
-      />
+      <Image src={`/image/${no}.png`} alt="" height={80} width={80} />
       <p className="text-3xl">{title}</p>
     </div>
   );
@@ -35,22 +41,12 @@ export default function Home() {
         </div>
       </h1>
       <div className="flex flex-col md:flex-row justify-between gap-y-14 md:gap-0">
-        <LessonBox title="pH ของสารละลาย" no={1} />
-        <LessonBox title="การไทเทรตกรด-เบส" no={2} />
-        <LessonBox title="ปฏิกิริยารีดอกซ์" no={3} />
+        <LessonBox title={LESSONS["1"].name} no={LESSONS["1"].no} />
+        <LessonBox title={LESSONS["2"].name} no={LESSONS["2"].no} />
+        <LessonBox title={LESSONS["3"].name} no={LESSONS["3"].no} />
       </div>
 
-      <div className="hidden md:flex justify-center absolute bottom-20 w-[calc(100%-10rem)] ">
-        <Link
-          href="/home"
-          className="flex"
-        >
-          <div className="flex gap-3">
-            <IoHomeOutline size={40} />
-            <p className="self-center text-lg font-bold">Home</p>
-          </div>
-        </Link>
-      </div>
+      <BottomNavigation />
     </div>
   );
 }
