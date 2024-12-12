@@ -1,5 +1,5 @@
 import Image from "next/image";
-import chemPic from "@/public/image/logo.png";
+import chemPic from "../../../public/image/logo.png";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     const imageStyle: React.CSSProperties = {
