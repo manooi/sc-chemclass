@@ -1,6 +1,8 @@
 import { MdOutlineLaptopChromebook } from "react-icons/md";
+import Image from "next/image";
 
 function LessonBox({ title, no }: { title: string; no: number }) {
+
   return (
     <div
       className="w-[30%] h-[15rem] bg-[#84C55A] text-3xl rounded-lg flex flex-col justify-around items-center
@@ -9,8 +11,12 @@ function LessonBox({ title, no }: { title: string; no: number }) {
       transition-all 
       hover:shadow-xl"
     >
-      <p className="">{title}</p>
-      <p className="text-7xl">{no}</p>
+      <Image
+        src={require(`@/public/image/${no}.png`).default}
+        alt="One"
+        height={80}
+      />
+      <p className="text-3xl">{title}</p>
     </div>
   );
 }
