@@ -6,7 +6,7 @@ import { IoHomeOutline } from "react-icons/io5";
 function LessonBox({ title, no }: { title: string; no: number }) {
   return (
     <div
-      className="w-[30%] h-[15rem] bg-[#84C55A] text-3xl rounded-lg flex flex-col justify-around items-center
+      className="md:w-[30%] h-[15rem] bg-[#84C55A] text-3xl rounded-lg flex flex-col justify-around items-center
       cursor-pointer
       hover:scale-105 
       transition-all 
@@ -27,20 +27,20 @@ function LessonBox({ title, no }: { title: string; no: number }) {
 
 export default function Home() {
   return (
-    <div className="h-screen w-screen p-20 relative">
-      <h1 className="text-5xl pb-10">
-        <span className="inline-block">
+    <div className="h-screen w-[cal(100vw-6rem)] p-12 md:p-20 relative">
+      <h1 className="text-4xl md:text-5xl pb-10">
+        <div className="flex">
           <MdOutlineLaptopChromebook size={40} className="ml-5 mr-6" />
-        </span>
-        My Lessons
+          My Lessons
+        </div>
       </h1>
-      <div className="flex justify-between">
+      <div className="flex flex-col md:flex-row justify-between gap-y-14 md:gap-0">
         <LessonBox title="pH ของสารละลาย" no={1} />
         <LessonBox title="การไทเทรตกรด-เบส" no={2} />
         <LessonBox title="ปฏิกิริยารีดอกซ์" no={3} />
       </div>
 
-      <div className="absolute bottom-20 w-[calc(100%-10rem)] flex justify-center">
+      <div className="hidden md:flex justify-center absolute bottom-20 w-[calc(100%-10rem)] ">
         <Link
           href="/home"
           className="flex"
@@ -50,10 +50,6 @@ export default function Home() {
             <p className="self-center text-lg font-bold">Home</p>
           </div>
         </Link>
-        {/* <div>
-          <button>Back</button>
-          <button>Next</button>
-        </div> */}
       </div>
     </div>
   );
