@@ -33,7 +33,7 @@ function LessonBox({ title, no }: { title: string; no: number }) {
 
 export default function Home() {
   return (
-    <div className="h-screen w-[cal(100vw-6rem)] p-5 md:p-10 relative">
+    <div>
       <h1 className="text-4xl md:text-5xl pb-10">
         <div className="flex">
           <MdOutlineLaptopChromebook size={40} className="ml-5 mr-6" />

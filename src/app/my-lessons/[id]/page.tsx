@@ -13,7 +13,7 @@ export default function Home() {
   const { width, height, iframeUrl } = lesson;
 
   return (
-    <div className="h-screen w-[cal(100vw-6rem)] p-2 md:p-5 relative">
+    <div className="h-full">
       <h1 className="text-2xl md:text-4xl pb-2">
         <div className="flex">
           <div>
@@ -29,12 +29,11 @@ export default function Home() {
         </div>
       </h1>
 
-      <div className={`w-full lg:w-[${width}] h-[${height}] mx-auto`}>
-        <iframe
-          src={iframeUrl}
-          className={`w-full h-full`}
-        ></iframe>
-      </div>
+      <iframe
+        src={iframeUrl}
+        className={`w-[100%] h-[70%] md:w-[60%] md:h-[85%] mx-auto`}
+        // className={`w-full h-full lg:w-[${width}] h-[${height}] mx-auto`}
+      ></iframe>
 
       <BottomNavigation />
     </div>
