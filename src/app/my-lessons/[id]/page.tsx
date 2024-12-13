@@ -12,6 +12,8 @@ export default function Home() {
   const lessonName = lesson.name;
   const { width, height, iframeUrl } = lesson;
 
+  const isFlash = id == '2';
+
   return (
     <div className="h-full">
       <h1 className="text-2xl md:text-4xl pb-2">
@@ -29,11 +31,19 @@ export default function Home() {
         </div>
       </h1>
 
-      <iframe
-        src={iframeUrl}
-        className={`w-[100%] h-[70%] md:w-[60%] md:h-[85%] mx-auto`}
-        // className={`w-full h-full lg:w-[${width}] h-[${height}] mx-auto`}
-      ></iframe>
+      {!isFlash && (
+        <iframe
+          src={iframeUrl}
+          className={`w-[100%] h-[70%] md:w-[60%] md:h-[85%] mx-auto`}
+          // className={`w-full h-full lg:w-[${width}] h-[${height}] mx-auto`}
+        ></iframe>
+      )}
+
+      {isFlash && (
+        <object className={`w-[100%] h-[70%] md:w-[60%] md:h-[85%] mx-auto`}>
+          <embed src="/flash/acid_base.swf" width="100%" height="100%" />
+        </object>
+      )}
 
       <BottomNavigation />
     </div>
