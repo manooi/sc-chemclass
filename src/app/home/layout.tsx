@@ -14,9 +14,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex h-screen relative">
       <div className="grow"></div>
-      <div className="bg-white grow "></div>
+      <div className="hidden md:block bg-white grow "></div>
       <Image
-        className="absolute"
+        className="hidden md:block absolute"
         src={chemPic}
         alt="Picture of the author"
         style={imageStyle}

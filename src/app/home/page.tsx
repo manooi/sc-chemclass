@@ -8,8 +8,8 @@ import Link from "next/link";
 export default function Home() {
   return (
     // <div className="border-[5px] border-solid border-black h-screen w-screen flex items-center">
-    <div className="h-screen w-screen flex items-center">
-      <div className="ml-10 sm:w-1/3 lg:w-1/5 h-[90%] bg-[#84C55A] rounded-2xl">
+    <div className="h-screen w-screen flex justify-center md:justify-start items-center">
+      <div className="w-[80%] md:ml-10 md:w-1/5 h-[90%] bg-[#84C55A] rounded-2xl">
         <div className="flex flex-col gap-5 p-10">
           <div className="flex item-center border-2 border-white text-white rounded-xl h-16">
             <div>
