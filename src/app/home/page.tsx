@@ -8,8 +8,8 @@ import Link from "next/link";
 export default function Home() {
   return (
     // <div className="border-[5px] border-solid border-black h-screen w-screen flex items-center">
-    <div className="h-screen w-screen flex justify-center md:justify-start items-center">
-      <div className="w-[80%] md:ml-10 md:w-1/5 h-[90%] bg-[#84C55A] rounded-2xl">
+    <div className="h-full w-full flex justify-center md:justify-start items-center ">
+      <div className="h-[90%] w-[90%] md:w-1/5 md:ml-10 bg-[#84C55A] rounded-2xl">
         <div className="flex flex-col gap-5 p-10">
           <div className="flex item-center border-2 border-white text-white rounded-xl h-16">
             <div>
@@ -72,7 +72,7 @@ export default function Home() {
             <IoNewspaperOutline size={25} className="ml-5 mr-6" />
             Assignments
           </MenuButton>
-          
+
           <MenuButton>
             <GrChatOption size={25} className="ml-5 mr-6" />
             Forum

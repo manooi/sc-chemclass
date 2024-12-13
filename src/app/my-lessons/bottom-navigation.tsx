@@ -11,12 +11,6 @@ export function BottomNavigationFlex() {
           <p className="self-center text-lg font-bold">Home</p>
         </div>
       </Link>
-      <Link href="/my-lessons" className="flex">
-        <div className="flex gap-3">
-          <MdOutlineLaptopChromebook size={40} />
-          <p className="self-center text-lg font-bold">Lessons</p>
-        </div>
-      </Link>
     </div>
   );
 }
