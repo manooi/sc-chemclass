@@ -1,6 +1,5 @@
 "use client";
 
-import { MdOutlineLaptopChromebook } from "react-icons/md";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -38,11 +37,8 @@ function LessonBox({ title, no }: { title: string; no: number }) {
 export default function Home() {
   return (
     <div>
-      <h1 className="text-4xl md:text-5xl pb-10">
-        <div className="flex">
-          <MdOutlineLaptopChromebook size={40} className="ml-5 mr-6" />
-          My Lessons
-        </div>
+      <h1 className="text-4xl md:text-5xl pb-10 font-bold">
+        My Lessons
       </h1>
       <div className="flex flex-col md:flex-row justify-between gap-y-14 md:gap-0">
         <LessonBox title={LESSONS["1"].name} no={LESSONS["1"].no} />

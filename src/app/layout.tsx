@@ -34,7 +34,8 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        // overflow-y-scroll fix problem with navbar
+        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-y-scroll`}
       >
         {children}
       </body>
