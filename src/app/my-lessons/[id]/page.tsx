@@ -1,6 +1,6 @@
 "use client";
 import { useParams, useRouter } from "next/navigation";
-import { LESSONS } from "../../lessons";
+import { LESSONS } from "../lessons";
 
 export default function Home() {
   const params = useParams();
@@ -21,10 +21,14 @@ export default function Home() {
           <div className="absolute z-10 left-10 top-10 xl:left-20 xl:top-20">
             <p className="text-3xl font-bold">{description?.title}</p>
             <p className="text-2xl font-bold mt-4">{description?.subject}</p>
-            <p className="text-2xl font-bold mt-4">จุดประสงค์การเรียนรู้</p>
+            <p className="text-2xl font-bold mt-4">
+              {description?.objectives.length ? "จุดประสงค์การเรียนรู้" : ""}
+            </p>
             <ul className="text-xl ml-5 mt-4">
-              {description?.objectives.map((i) => (
-                <li className="mb-1">{i}</li>
+              {description?.objectives.map((i, _) => (
+                <li className="mb-1" key={_}>
+                  {i}
+                </li>
               ))}
             </ul>
           </div>
@@ -40,7 +44,8 @@ export default function Home() {
           />
           <div
             onClick={() => goToQuestion(id)}
-            className="absolute cursor-pointer right-0 bottom-0 h-[31%] w-[16%]"></div>
+            className="absolute cursor-pointer right-0 bottom-0 h-[31%] w-[16%]"
+          ></div>
         </div>
       </div>
     </div>

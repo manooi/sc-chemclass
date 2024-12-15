@@ -10,7 +10,7 @@ function LessonBox({ title, no }: { title: string; no: number }) {
   const router = useRouter();
 
   function goToLesson(no: number) {
-    router.push(`/my-lessons/${no}/info`);
+    router.push(`/my-lessons/${no}`);
   }
 
   return (
