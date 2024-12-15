@@ -1,6 +1,8 @@
 "use client";
 
 import DropdownIncreaseDecrease from "@/components/dropdown-increase-decrease/dropdown-increase-decrease";
+import BottomNavigation from "../../bottom-navigation";
+import { useParams } from "next/navigation";
 
 function InitialAndDependentVariables({
   name,
@@ -18,12 +20,12 @@ function InitialAndDependentVariables({
       </div>
       <div className="w-full text-center bg-white p-2 rounded-md">
         {type == "select" && (
-          <select className="w-full focus:outline-none" name="var" id="var">
-            <option value="" disabled selected>
+          <select className="w-full focus:outline-none" name="var" id="var" defaultValue={'DEFAULT'}>
+            <option value="DEFAULT" disabled >
               เลือก
             </option>
-            {options?.map((i) => (
-              <option value={i}>{i}</option>
+            {options?.map((i, _) => (
+              <option value={i} key={_}>{i}</option>
             ))}
           </select>
         )}
@@ -42,6 +44,9 @@ function InitialAndDependentVariables({
 }
 
 export default function Home() {
+  const params = useParams();
+  const id = params?.id as string;
+
   return (
     <div className="mt-8">
       <div className="flex justify-around">
@@ -110,6 +115,7 @@ export default function Home() {
           ></textarea>
         </div>
 
+        <BottomNavigation backUrl={`/my-lessons/${id}`} nextUrl={`/my-lessons/${id}/instruction`} />
         <div className="mb-[50px]"></div>
       </div>
     </div>

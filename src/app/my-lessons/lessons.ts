@@ -3,12 +3,21 @@ interface LessonInfo {
     no: number;
     iframeUrl: string,
     description?: LessonDescription;
+    simulation?: SimulationDescription;
 }
 
 export interface LessonDescription {
     title: string;
     subject: string;
     objectives: string[];
+}
+
+
+export interface SimulationDescription {
+    situation: string;
+    description: string;
+    procedures: string[];
+    summaries: string[];
 }
 
 export const LESSONS: { [no: string]: LessonInfo } = {
@@ -23,6 +32,19 @@ export const LESSONS: { [no: string]: LessonInfo } = {
                 '1.	อธิบายความสัมพันธ์ระหว่าง pH กับความเข้มข้นของไฮโดรเนียมไอออนได้ (K)',
                 '2.	อธิบายความเป็นกรด-เบสของสารละลายเมื่อทราบค่า pH ได้ (K)'
             ],
+        },
+        simulation: {
+            situation: "การศึกษาค่า pH ของสารละลายผ่าน PhET Simulation",
+            description: "ให้นักเรียนศึกษาและทดลองเกี่ยวกับการวัดค่า pH ของสารละลายประเภทต่าง ๆ โดยการสังเกตผลของการเปลี่ยนแปลงความเข้มข้นของไฮโดรเนียมไอออน (H3O+) และไฮดรอกไซด์ไอออน (OH-)  ที่เกิดขึ้นในสารละลายทั้งกรดและเบส ",
+            procedures: [
+                "เริ่มจากการเลือกสารละลายหนึ่งอย่างจาก สารละลายทั้งหมด 12 ชนิด จากนั้นวัดค่า pH ของสารละลายนั้น",
+                "นักเรียนเจือจางสารละลายกรดหรือเบสด้วยการเติมน้ำเข้าไปในสารละลายแล้วสังเกตการเปลี่ยนแปลงของค่า pH และสีของสารละลายที่เกิดขึ้น",
+                "สังเกตการเปลี่ยนแปลงของความเข้มข้นระหว่าง H3O+ และ OH- เมื่อสารละลายถูกเจือจางและวัดค่า pH อีกครั้ง"
+            ],
+            summaries: [
+                "นักเรียนบันทึกค่า pH ของสารละลายแต่ละชนิดก่อนและหลังการเจือจาง",
+                "นักเรียนอธิบายการเปลี่ยนแปลงของค่า pH จากผลการทดลองและตั้งข้อสังเกตเกี่ยวกับการที่สารละลายกรดหรือเบสจะมีค่า pH เปลี่ยนแปลงเมื่อเจือจาง",
+            ]
         }
     },
     "2": {

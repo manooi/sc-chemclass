@@ -1,10 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { LESSONS } from "./lessons";
-import BottomNavigation, { BottomNavigationFlex } from "./bottom-navigation";
 
 function LessonBox({ title, no }: { title: string; no: number }) {
   const router = useRouter();
@@ -44,13 +42,6 @@ export default function Home() {
         <LessonBox title={LESSONS["1"].name} no={LESSONS["1"].no} />
         <LessonBox title={LESSONS["2"].name} no={LESSONS["2"].no} />
         <LessonBox title={LESSONS["3"].name} no={LESSONS["3"].no} />
-        <div className="block md:hidden mb-5 self-center">
-          <BottomNavigationFlex />
-        </div>
-      </div>
-
-      <div className="hidden md:block">
-        <BottomNavigation />
       </div>
     </div>
   );

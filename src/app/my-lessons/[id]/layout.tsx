@@ -1,7 +1,6 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import BottomNavigation, { BottomNavigationFlex } from "../bottom-navigation";
 import Image from "next/image";
 import { LESSONS } from "../lessons";
 
@@ -44,7 +43,6 @@ export default function Home({ children }: { children: React.ReactNode }) {
       </div>
       <div style={center} className="absolute top-[100px] w-full">
         {children}
-        <BottomNavigationFlex />
       </div>
     </div>
   );
