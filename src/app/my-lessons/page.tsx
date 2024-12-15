@@ -3,7 +3,6 @@
 import { MdOutlineLaptopChromebook } from "react-icons/md";
 import Image from "next/image";
 import Link from "next/link";
-import { IoHomeOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import { LESSONS } from "./lessons";
 import BottomNavigation, { BottomNavigationFlex } from "./bottom-navigation";
@@ -12,21 +11,26 @@ function LessonBox({ title, no }: { title: string; no: number }) {
   const router = useRouter();
 
   function goToLesson(no: number) {
-    router.push(`/my-lessons/${no}`);
+    router.push(`/my-lessons/${no}/info`);
   }
 
   return (
     <div
       onClick={() => goToLesson(no)}
-      className="md:w-[30%] h-[15rem] bg-[#84C55A] text-3xl rounded-lg flex flex-col justify-around items-center
-      cursor-pointer
-      hover:scale-105 
-      transition-all 
-      duration-200
-      hover:shadow-xl"
+      className="
+        md:w-[30%] bg-[#AAE5BD] text-3xl rounded-lg flex flex-col justify-around items-center
+        p-6
+        cursor-pointer
+        hover:scale-105 
+        transition-all 
+        duration-200
+        hover:shadow-xl"
     >
-      <Image src={`/image/${no}.png`} alt="" height={80} width={80} />
-      <p className="text-3xl">{title}</p>
+      <div className="flex w-full justify-around items-center">
+        <Image src={`/image/${no}.png`} alt="" height={120} width={120} />
+        <p className="w-full text-4xl text-[#004EA5]">{title}</p>
+      </div>
+      <Image src={`/image/${no}-logo.png`} alt="" height={270} width={270} />
     </div>
   );
 }
