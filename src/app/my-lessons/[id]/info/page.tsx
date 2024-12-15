@@ -18,7 +18,7 @@ export default function Home() {
     <div className="flex justify-center w-full h-full mx-auto bg-red-0">
       <div className="bg-red-0">
         <div className="relative">
-          <div className="absolute z-10 left-20 top-20">
+          <div className="absolute z-10 left-10 top-10 xl:left-20 xl:top-20">
             <p className="text-3xl font-bold">{description?.title}</p>
             <p className="text-2xl font-bold mt-4">{description?.subject}</p>
             <p className="text-2xl font-bold mt-4">จุดประสงค์การเรียนรู้</p>

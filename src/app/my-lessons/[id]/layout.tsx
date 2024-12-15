@@ -13,11 +13,16 @@ export default function Home({ children }: { children: React.ReactNode }) {
 
   const boxShadow = {
     "box-shadow": "inset 0px 4px 4px rgba(0, 0, 0, 0.25)",
-    "border-radius": "0px 16px 16px 0px",
+    "border-radius": "0px 16px 20px 0px",
+  } as React.CSSProperties;
+
+  const center = {
+    transform: "translate(-50%)",
+    left: "50%"
   } as React.CSSProperties;
 
   return (
-    <div className="h-full flex flex-col relative">
+    <div className="h-full flex flex-col relative bg-red-0">
       <div className="relative block bg-red-0">
         <Image
           className="absolute inline-block z-10"
@@ -37,7 +42,7 @@ export default function Home({ children }: { children: React.ReactNode }) {
           {lessonName}
         </h1>
       </div>
-      <div className="absolute top-[100px] left-0 translate-x-1/3">
+      <div style={center} className="absolute top-[100px] w-full">
         {children}
       </div>
       <BottomNavigation />
