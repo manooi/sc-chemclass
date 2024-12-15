@@ -4,7 +4,7 @@ import { MdOutlineLaptopChromebook } from "react-icons/md";
 
 export function BottomNavigationFlex() {
   return (
-    <div className={`flex gap-5 w-[calc(100%-10rem)]`}>
+    <div className={`flex gap-5 w-[calc(100%)] mb-5`}>
       <Link href="/home" className="flex">
         <div className="flex gap-3">
           <IoHomeOutline size={40} />
@@ -17,7 +17,7 @@ export function BottomNavigationFlex() {
 
 export default function BottomNavigation() {
   return (
-    <div className={`flex absolute bottom-5 gap-5 w-[calc(100%-10rem)]`}>
+    <div className={`flex absolute bottom-5 gap-5 w-[calc(100%-4rem)]`}>
       <Link href="/home" className="flex">
         <div className="flex gap-3">
           <IoHomeOutline size={40} />

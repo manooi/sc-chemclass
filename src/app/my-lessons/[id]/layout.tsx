@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import BottomNavigation from "../bottom-navigation";
+import BottomNavigation, { BottomNavigationFlex } from "../bottom-navigation";
 import Image from "next/image";
 import { LESSONS } from "../lessons";
 
@@ -11,15 +11,15 @@ export default function Home({ children }: { children: React.ReactNode }) {
   const lesson = LESSONS[id];
   const lessonName = lesson.name;
 
-  const boxShadow = {
-    "box-shadow": "inset 0px 4px 4px rgba(0, 0, 0, 0.25)",
-    "border-radius": "0px 16px 20px 0px",
-  } as React.CSSProperties;
+  const boxShadow: React.CSSProperties = {
+    "boxShadow": "inset 0px 4px 4px rgba(0, 0, 0, 0.25)",
+    "borderRadius": "0px 16px 20px 0px",
+  };
 
-  const center = {
+  const center: React.CSSProperties = {
     transform: "translate(-50%)",
     left: "50%",
-  } as React.CSSProperties;
+  };
 
   return (
     <>
@@ -45,9 +45,9 @@ export default function Home({ children }: { children: React.ReactNode }) {
         </div>
         <div style={center} className="absolute top-[100px] w-full">
           {children}
+          <BottomNavigationFlex />
         </div>
       </div>
-      <BottomNavigation />
     </>
   );
 }
