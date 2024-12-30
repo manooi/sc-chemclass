@@ -21,10 +21,10 @@ export default function Home({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <div className="h-full flex flex-col relative">
+    <div className=" h-full flex flex-col relative">
       <div className="relative block bg-red-0">
         <Image
-          className="absolute inline-block z-10"
+          className="absolute inline-block z-10 left-[-50px]"
           src={`/image/${id}.png`}
           alt=""
           height={100}
@@ -33,8 +33,8 @@ export default function Home({ children }: { children: React.ReactNode }) {
         <h1
           style={boxShadow}
           className="
-            absolute top-[20px] left-[65px] z-0
-            inline-block text-4xl font-bold
+            absolute top-[20px] left-[20px] z-0
+            inline-block text-3xl md:text-4xl font-bold
             bg-[#AAE5BD] p-3 px-5 rounded-2xl
             "
         >

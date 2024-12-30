@@ -49,7 +49,7 @@ export default function Home() {
 
   return (
     <div className="mt-8">
-      <div className="flex justify-around">
+      <div className="flex flex-col md:flex-row justify-around gap-20 md:gap-0">
         <div className="text-center">
           <img className="w-3/4 mx-auto" src="/image/H+.png" />
           <h2 className="inline-block mx-auto p-3 bg-[#C42646] text-white text-xl font-bold rounded-lg mt-10">
@@ -57,14 +57,14 @@ export default function Home() {
           </h2>
         </div>
         <div className="text-center">
-          <img className="w-3/4 mx-auto" src="/image/H+.png" />
+          <img className="w-3/4 mx-auto" src="/image/OH-.png" />
           <h2 className="inline-block mx-auto p-3 bg-[#2660C4] text-white text-xl font-bold rounded-lg mt-10">
             การวัดค่า pOH ของสารละลาย
           </h2>
         </div>
       </div>
 
-      <div className="flex flex-col w-full px-20 mt-20 gap-y-10">
+      <div className="flex flex-col w-full md:px-20 mt-20 gap-y-10">
         {/* Hypothesis */}
         <div className="border border-solid border-gray-200 rounded-lg p-4 bg-white">
           <h2 className="text-xl font-bold mb-4">สมมติฐาน</h2>
