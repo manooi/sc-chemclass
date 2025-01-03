@@ -47,9 +47,9 @@ export default function Home() {
           <p className="text-2xl font-bold mt-4">
             {description?.objectives.length ? "จุดประสงค์การเรียนรู้" : ""}
           </p>
-          <ul className="text-xl ml-5 mt-4">
+          <ul className="text-xl ml-5 mt-4 w-[65%]">
             {description?.objectives.map((i, _) => (
-              <li className="mb-1" key={_}>
+              <li className="ml-6 mt-2 list-decimal" key={_}>
                 {i}
               </li>
             ))}
