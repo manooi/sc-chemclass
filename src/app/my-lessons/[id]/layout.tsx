@@ -20,6 +20,9 @@ export default function Home({ children }: { children: React.ReactNode }) {
     left: "50%",
   };
 
+  // For small device
+  const textSizeForSmallDevice = id == '2' ? 'text-[1.8rem]' : 'text-3xl';
+
   return (
     <div className=" h-full flex flex-col relative">
       <div className="relative block bg-red-0">
@@ -32,11 +35,11 @@ export default function Home({ children }: { children: React.ReactNode }) {
         />
         <h1
           style={boxShadow}
-          className="
+          className={`
             absolute top-[20px] left-[20px] z-0
-            inline-block text-3xl md:text-4xl font-bold
+            inline-block ${textSizeForSmallDevice} md:text-3xl font-bold
             bg-[#AAE5BD] p-3 px-5 rounded-2xl
-            "
+            `}
         >
           {lessonName}
         </h1>

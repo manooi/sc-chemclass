@@ -29,6 +29,7 @@ export default function Home() {
         </object>
       )}
       <BottomNavigation backUrl={`/my-lessons/${id}/instruction`} nextUrl={`/my-lessons`} nextBtnName="Finish" />
+      <div className="mb-[50px]"></div>
     </div>
   );
 }

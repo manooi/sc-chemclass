@@ -4,6 +4,7 @@ interface LessonInfo {
     iframeUrl: string,
     description?: LessonDescription;
     simulation?: SimulationDescription;
+    question: Question;
 }
 
 export interface LessonDescription {
@@ -13,6 +14,24 @@ export interface LessonDescription {
     objectives: string[];
 }
 
+export interface Hypothesis {
+    hypothesis: string;
+    question: string;
+    upText: string;
+    downText: string;
+    moreText?: string;
+}
+
+export interface Variable {
+    variables: string[];
+    dependents: string[];
+}
+
+export interface Question {
+    hypos: Hypothesis[];
+    vairable: Variable;
+    definition: string;
+}
 
 export interface SimulationDescription {
     situation: string;
@@ -38,16 +57,37 @@ export const LESSONS: { [no: string]: LessonInfo } = {
         },
         simulation: {
             situation: "การศึกษาค่า pH ของสารละลายผ่าน PhET Simulation",
-            description: "ให้นักเรียนศึกษาและทดลองเกี่ยวกับการวัดค่า pH ของสารละลายประเภทต่าง ๆ โดยการสังเกตผลของการเปลี่ยนแปลงความเข้มข้นของไฮโดรเนียมไอออน (H3O+) และไฮดรอกไซด์ไอออน (OH-)  ที่เกิดขึ้นในสารละลายทั้งกรดและเบส",
+            description: "ให้นักเรียนศึกษาและทดลองเกี่ยวกับการวัดค่า pH ของสารละลายประเภทต่าง ๆ โดยการสังเกตผลของการเปลี่ยนแปลงความเข้มข้นของไฮโดรเนียมไอออน (H₃O⁺) และไฮดรอกไซด์ไอออน (OH⁻)  ที่เกิดขึ้นในสารละลายทั้งกรดและเบส",
             procedures: [
                 "เริ่มจากการเลือกสารละลายหนึ่งอย่างจาก สารละลายทั้งหมด 12 ชนิด จากนั้นวัดค่า pH ของสารละลายนั้น",
                 "นักเรียนเจือจางสารละลายกรดหรือเบสด้วยการเติมน้ำเข้าไปในสารละลายแล้วสังเกตการเปลี่ยนแปลงของค่า pH และสีของสารละลายที่เกิดขึ้น",
-                "สังเกตการเปลี่ยนแปลงของความเข้มข้นระหว่าง H3O+ และ OH- เมื่อสารละลายถูกเจือจางและวัดค่า pH อีกครั้ง"
+                "สังเกตการเปลี่ยนแปลงของความเข้มข้นระหว่าง H₃O⁺ และ OH⁻ เมื่อสารละลายถูกเจือจางและวัดค่า pH อีกครั้ง"
             ],
             summaries: [
                 "นักเรียนบันทึกค่า pH ของสารละลายแต่ละชนิดก่อนและหลังการเจือจาง",
                 "นักเรียนอธิบายการเปลี่ยนแปลงของค่า pH จากผลการทดลองและตั้งข้อสังเกตเกี่ยวกับการที่สารละลายกรดหรือเบสจะมีค่า pH เปลี่ยนแปลงเมื่อเจือจาง",
             ]
+        },
+        question: {
+            hypos: [
+                {
+                    hypothesis: "หากความเข้มข้นของของสารละลายไฮโดรเนียมไอออนเพิ่มขึ้น",
+                    question: " ค่า pH จะ",
+                    upText: "เพิ่มขึ้น",
+                    downText: "ลดลง",
+                },
+                {
+                    hypothesis: "หากความเข้มข้นของของสารละลายไฮดรอกไซด์ไอออนเพิ่มขึ้น",
+                    question: " ค่า pOH จะ ",
+                    upText: "เพิ่มขึ้น",
+                    downText: "ลดลง",
+                }
+            ],
+            vairable: {
+                variables: ["ความเข้มข้นของของสารละลายไฮโดรเนียมไอออน", "ค่า pH ของสารละลาย"],
+                dependents: ["ความเข้มข้นของของสารละลายไฮโดรเนียมไอออน", "ค่า pH ของสารละลาย"]
+            },
+            definition: "pH ของสารละลาย คือ"
         }
     },
     "2": {
@@ -75,13 +115,35 @@ export const LESSONS: { [no: string]: LessonInfo } = {
             ],
             summaries: [
                 "ขณะที่เติมสารละลายโซเดียมไฮดรอกไซด์ลงในกรดไฮโดรคลอริก pH ของสารละลายผสมมีการเปลี่ยนแปลงอย่าง่ไร",
-                "ณ จุดยติสารละลายโซเดียมไฮดรอกไซด์ที่ใช้มีปริมาตรเท่าใด",
+                "ณ จุดยุติสารละลายโซเดียมไฮดรอกไซด์ที่ใช้มีปริมาตรเท่าใด",
             ]
+        },
+        question: {
+            hypos: [{
+                hypothesis: "หากกรดที่ใช้ในการไทเทรตมีความเข้มข้นสูง (จำนวนโมลของกรดในสารละลายสูง)",
+                question: " จะต้องใช้ปริมาณเบสในการไทเทรตที่",
+                upText: "มากขึ้น",
+                downText: "ลดลง",
+                moreText: "จึงจะสามารถทำปฏิกิริยาพอดีกัน (สมมูลกัน)"
+            }],
+            vairable: {
+                variables: ["ความเข้มข้นของสารละลายกรดไฮโดรคลอริก", "ปริมาตรของสารละลายโซเดียมไฮดรอกไซด์"],
+                dependents: ["ความเข้มข้นของสารละลายกรดไฮโดรคลอริก", "ปริมาตรของสารละลายโซเดียมไฮดรอกไซด์"]
+            },
+            definition: "การไทเทรต คือ"
         }
     },
     "3": {
         name: "ปฏิกิริยารีดอกซ์",
         no: 3,
         iframeUrl: "https://teachchemistry.org/simulations/2021/may/#/",
+        question: {
+            hypos: [],
+            vairable: {
+                variables: [],
+                dependents: []
+            },
+            definition: ""
+        }
     }
 }

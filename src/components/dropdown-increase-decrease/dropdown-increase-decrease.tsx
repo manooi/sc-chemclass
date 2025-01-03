@@ -2,8 +2,12 @@ import { useState } from "react";
 
 export default function DropdownIncreaseDecrease({
   className,
+  upText,
+  downText,
 }: {
   className?: string;
+  upText?: string;
+  downText?: string;
 }) {
   const [isOpen, setIsOpen] = useState(false); // Track if dropdown is open
   const [selected, setSelected] = useState("____");
@@ -17,12 +21,20 @@ export default function DropdownIncreaseDecrease({
     setIsOpen(false);
   };
 
+  if (!upText) {
+    upText = "เพิ่มขึ้น"
+  }
+
+  if (!downText) {
+    downText = "ลดลง"
+  }
+
   const btnBg: string =
     selected == "____"
       ? ""
-      : selected == "เพิ่มขึ้น"
-      ? "bg-green-300"
-      : "bg-red-300";
+      : selected == upText
+        ? "bg-green-300"
+        : "bg-red-300";
 
   return (
     <div className={`relative inline-block ${className ?? ""}`}>
@@ -37,18 +49,18 @@ export default function DropdownIncreaseDecrease({
           <ul className="bg-red-0">
             <li>
               <button
-                onClick={() => handleSelect("เพิ่มขึ้น")}
+                onClick={() => handleSelect(upText)}
                 className="w-full text- block px-4 py-3 text-sm text-gray-700 hover:bg-gray-200"
               >
-                เพิ่มขึ้น
+                {upText}
               </button>
             </li>
             <li>
               <button
-                onClick={() => handleSelect("ลดลง")}
+                onClick={() => handleSelect(downText)}
                 className="w-full block px-4 py-3 text-sm text-gray-700 hover:bg-gray-200"
               >
-                ลดลง
+                {downText}
               </button>
             </li>
           </ul>
