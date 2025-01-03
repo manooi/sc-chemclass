@@ -12,8 +12,8 @@ export default function Home() {
   const { simulation } = lesson;
 
   return (
-    <div className="mt-10">
-      <Board className="w-[80%] mx-auto">
+    <div className="mt-6 md:mt-10">
+      <Board className="w-full mx-auto">
         <p className="text-2xl mt-4">
           <span className="font-bold">สถานการณ์:</span> {simulation?.situation}
         </p>

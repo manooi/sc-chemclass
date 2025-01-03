@@ -7,6 +7,7 @@ interface LessonInfo {
 }
 
 export interface LessonDescription {
+    titleNo: string;
     title: string;
     subject: string;
     objectives: string[];
@@ -26,11 +27,12 @@ export const LESSONS: { [no: string]: LessonInfo } = {
         no: 1,
         iframeUrl: "https://phet.colorado.edu/sims/html/ph-scale/latest/ph-scale_all.html?locale=th",
         description: {
-            title: 'หน่วยการเรียนรู้ที่ 10 กรด-เบส',
+            titleNo: "หน่วยการเรียนรู้ที่ 10",
+            title: 'กรด-เบส',
             subject: 'เรื่อง pH ของสารละลาย',
             objectives: [
-                '1.	อธิบายความสัมพันธ์ระหว่าง pH กับความเข้มข้นของไฮโดรเนียมไอออนได้ (K)',
-                '2.	อธิบายความเป็นกรด-เบสของสารละลายเมื่อทราบค่า pH ได้ (K)'
+                'อธิบายความสัมพันธ์ระหว่าง pH กับความเข้มข้นของไฮโดรเนียมไอออนได้ (K)',
+                'อธิบายความเป็นกรด-เบสของสารละลายเมื่อทราบค่า pH ได้ (K)'
             ],
         },
         simulation: {
