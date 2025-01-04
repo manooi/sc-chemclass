@@ -1,13 +1,25 @@
+"use client";
+
 import { FaReact, FaUserGraduate } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { useState } from "react";
 
 export default function NavBar({ className }: { className: string }) {
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleMouseLeave = () => {
+    setIsOpen(false);
+  };
+
   return (
-    <nav className={"bg-green-800 text-white shadow-lg" + ` ${className}`}>
+    <nav className={"bg-green-800 text-white shadow-lg" + ` ${className}`}
+      onMouseLeave={handleMouseLeave}>
+      {/* Medium screen */}
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-12">
           <div className="flex gap-x-4">
-            <div className="block">
+            <div className="block cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
               <GiHamburgerMenu size={27} />
             </div>
             <div className="flex items-center">
@@ -54,20 +66,18 @@ export default function NavBar({ className }: { className: string }) {
           </div>
         </div>
       </div>
-      <div id="mobile-menu" className="md:hidden hidden">
-        <a href="#" className="block px-4 py-2 text-sm hover:bg-green-700">
-          Home
-        </a>
-        <a href="#" className="block px-4 py-2 text-sm hover:bg-green-700">
-          About
-        </a>
-        <a href="#" className="block px-4 py-2 text-sm hover:bg-green-700">
-          Services
-        </a>
-        <a href="#" className="block px-4 py-2 text-sm hover:bg-green-700">
-          Contact
-        </a>
-      </div>
+
+      {/* Small screen */}
+      {isOpen &&
+        <div className="bg-green-700 block relative z-50" >
+          <a href="/home" className="block px-4 py-2 text-sm hover:bg-green-600">
+            Home
+          </a>
+          <a href="/my-lessons" className="block px-4 py-2 text-sm hover:bg-green-600">
+            My Lessons
+          </a>
+        </div>
+      }
     </nav>
   );
 }
