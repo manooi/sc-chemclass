@@ -138,8 +138,8 @@ export const LESSONS: { [no: string]: LessonInfo } = {
         no: 3,
         iframeUrl: "https://teachchemistry.org/simulations/2021/may/#/",
         description: {
-            titleNo: "หน่วยการเรียนรู้ที่ 10",
-            title: 'กรด-เบส',
+            titleNo: "หน่วยการเรียนรู้ที่ 11",
+            title: 'เคมีไฟฟ้า',
             subject: 'เรื่อง ปฏิกิริยารีดอกซ์',
             objectives: [
                 "วิเคราะห์การเปลี่ยนแปลงเลขออกซิเดชัน และระบุตัวรีดิวซ์และตัวออกซิไดส์ รวมทั้งเขียนครึ่งปฏิกิริยาออกซิเดชันและครึ่งปฏิกิริยารีดักชันของปฏิกิริยารีดอกซ์ (K)",
