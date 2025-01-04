@@ -22,11 +22,13 @@ export default function Home() {
       )}
 
       {isFlash && (
-        <object
-          className={`w-[100%] h-[100%] mx-auto`}
-        >
-          <embed src="/flash/acid_base.swf" width="100%" height="100%" />
-        </object>
+        <div className="flex justify-center">
+          <embed
+            className="w-full lg:w-[90%] xl-[70%] lg:h-[700px]"
+            src="/flash/acid_base.swf"
+            type="application/x-shockwave-flash"
+          />
+          </div>
       )}
 
       <div className="mt-[50px]"></div>

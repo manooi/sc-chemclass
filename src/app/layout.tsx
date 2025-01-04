@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import Script from "next/script";
 
@@ -27,13 +26,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* For running swf */}
         <Script
-          src="https://unpkg.com/@ruffle-rs/ruffle"
+          src="https://cdn.jsdelivr.net/npm/@ruffle-rs/ruffle@0.1.0-nightly.2025.1.4/ruffle.min.js"
           strategy="beforeInteractive"
         />
-
-
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap" rel="stylesheet" />
