@@ -17,7 +17,7 @@ export default function Home() {
       {!isFlash && (
         <iframe
           src={iframeUrl}
-          className={`w-[70%] h-[550px] mx-auto`}
+          className={`w-[100%] lg:w-[75%] 2xl:w-[60%] h-[500px] lg:h-[600px] 2xl:h-[800px] mx-auto`}
         ></iframe>
       )}
 
@@ -28,6 +28,8 @@ export default function Home() {
           <embed src="/flash/acid_base.swf" width="100%" height="100%" />
         </object>
       )}
+
+      <div className="mt-[50px]"></div>
       <BottomNavigation backUrl={`/my-lessons/${id}/instruction`} nextUrl={`/my-lessons`} nextBtnName="Finish" />
       <div className="mb-[50px]"></div>
     </div>

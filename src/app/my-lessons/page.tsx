@@ -16,7 +16,7 @@ function LessonBox({ title, no }: { title: string; no: number }) {
       onClick={() => goToLesson(no)}
       className="
         md:w-[30%] bg-[#AAE5BD] text-3xl rounded-lg flex flex-col justify-around items-center
-        p-6
+        p-4
         cursor-pointer
         hover:scale-105 
         transition-all 
@@ -24,10 +24,13 @@ function LessonBox({ title, no }: { title: string; no: number }) {
         hover:shadow-xl"
     >
       <div className="flex w-full justify-around items-center">
-        <Image src={`/image/${no}.png`} alt="" height={120} width={120} />
-        <p className="w-full text-4xl text-[#004EA5]">{title}</p>
+        <Image className="hidden md:block" src={`/image/${no}.png`} alt="" height={80} width={80} />
+        <Image className="md:hidden" src={`/image/${no}.png`} alt="" height={60} width={60} />
       </div>
-      <Image src={`/image/${no}-logo.png`} alt="" height={270} width={270} />
+      <p className="mt-4 mb-4 text-center w-full text-3xl md:text-4xl font-bold text-[#004EA5]">{title}</p>
+
+      <Image className="hidden md:block" src={`/image/${no}-logo.png`} alt="" height={200} width={200} />
+      <Image className="md:hidden" src={`/image/${no}-logo.png`} alt="" height={120} width={120} />
     </div>
   );
 }

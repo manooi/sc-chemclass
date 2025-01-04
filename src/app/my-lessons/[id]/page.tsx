@@ -62,7 +62,7 @@ export default function Home() {
         />
         <div
           onClick={() => goToQuestion(id)}
-          className="absolute cursor-pointer right-0 bottom-0 h-[31%] w-[16%]"
+          className="absolute cursor-pointer right-0 bottom-0 h-[31%] w-[16%] z-10"
         ></div>
       </div>
     </div>
