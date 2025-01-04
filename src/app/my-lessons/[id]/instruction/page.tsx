@@ -27,7 +27,9 @@ export default function Home() {
         <p className="text-2xl mt-4 font-bold">ขั้นตอนการทดลอง:</p>
         <ul className="text-xl ml-6 mt-2 list-decimal">
           {simulation?.procedures.map((i, _) => (
-            <li key={_}>{i}</li>
+            <div key={_}>
+              {i.includes("\t") ? <ul className="list-disc ml-6"><li dangerouslySetInnerHTML={{ __html: i }}/></ul> : <li dangerouslySetInnerHTML={{ __html: i }}/>}
+            </div>
           ))}
         </ul>
 
