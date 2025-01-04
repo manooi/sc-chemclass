@@ -28,7 +28,7 @@ export default function NavBar({ className }: { className: string }) {
               href="/my-lessons"
               className="hover:bg-green-700 px-3 py-2 rounded-md text-sm"
             >
-              Lessons
+              My Lessons
             </a>
             <a
               href="#"

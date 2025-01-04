@@ -11,16 +11,20 @@ export default function BottomNavigation({
 }) {
   return (
     <div className="flex justify-between">
-      <Link href={backUrl ?? "#"}>
+      
+      {backUrl && <Link href={backUrl ?? "#"}>
         <button className="bg-green-300 hover:bg-green-400 p-2 px-4 rounded-md">
           Back
         </button>
       </Link>
-      <Link href={nextUrl ?? "#"}>
+      }
+
+      {nextUrl && <Link href={nextUrl ?? "#"}>
         <button className="bg-green-300 hover:bg-green-400 p-2 px-4 rounded-md">
           {nextBtnName ?? "Next"}
         </button>
       </Link>
+      }
     </div>
   );
 }

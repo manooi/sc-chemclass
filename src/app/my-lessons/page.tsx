@@ -38,7 +38,7 @@ function LessonBox({ title, no }: { title: string; no: number }) {
 export default function Home() {
   return (
     <div>
-      <h1 className="text-4xl md:text-5xl pb-10 font-bold">
+      <h1 className="text-4xl md:text-5xl pb-10 font-bold drop-shadow-lg text-gray-800">
         My Lessons
       </h1>
       <div className="flex flex-col md:flex-row justify-between gap-y-14 md:gap-0">
