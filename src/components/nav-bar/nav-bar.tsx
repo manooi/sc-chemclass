@@ -7,12 +7,12 @@ export default function NavBar({ className }: { className: string }) {
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-12">
           <div className="flex gap-x-4">
-            <div className="block md:hidden">
+            <div className="block">
               <GiHamburgerMenu size={27} />
             </div>
             <div className="flex items-center">
               <a href="/home" className="text-lg font-semibold">
-                <FaReact className="inline-block mr-3" size={27} />
+                {/* <FaReact className="inline-block mr-3" size={27} /> */}
                 SC Chemclass
               </a>
             </div>

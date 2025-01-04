@@ -72,7 +72,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="hidden md:block">
+      <div className="hidden lg:block">
         <div className="mb-[50px]"></div>
         <BottomNavigation
           backUrl={`/my-lessons`}
