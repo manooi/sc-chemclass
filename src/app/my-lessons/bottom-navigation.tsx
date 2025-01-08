@@ -4,10 +4,12 @@ export default function BottomNavigation({
   backUrl,
   nextUrl,
   nextBtnName,
+  children
 }: {
   backUrl?: string;
   nextUrl?: string;
   nextBtnName?: string;
+  children? : React.ReactNode
 }) {
   return (
     <div className="flex justify-between">
@@ -25,6 +27,7 @@ export default function BottomNavigation({
         </button>
       </Link>
       }
+      {children}
     </div>
   );
 }

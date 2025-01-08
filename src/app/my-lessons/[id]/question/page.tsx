@@ -5,7 +5,7 @@ import BottomNavigation from "../../bottom-navigation";
 import { useParams } from "next/navigation";
 import { LESSONS } from "../../lessons";
 
-export default function Home() {
+export default function Question() {
   const params = useParams();
   const id = params?.id as string;
 

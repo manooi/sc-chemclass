@@ -5,7 +5,7 @@ import { LESSONS } from "../../lessons";
 import BottomNavigation from "../../bottom-navigation";
 import Board from "@/components/board/board";
 
-export default function Home() {
+export default function Instruction() {
   const params = useParams();
   const id = params?.id as string;
   const lesson = LESSONS[id];

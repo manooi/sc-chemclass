@@ -4,7 +4,7 @@ import { useParams } from "next/navigation";
 import { LESSONS } from "../../lessons";
 import BottomNavigation from "../../bottom-navigation";
 
-export default function Home() {
+export default function Simuation() {
   const params = useParams();
   const id = params?.id as string;
   const lesson = LESSONS[id];
@@ -32,7 +32,7 @@ export default function Home() {
       )}
 
       <div className="mt-[50px]"></div>
-      <BottomNavigation backUrl={`/my-lessons/${id}/instruction`} nextUrl={`/my-lessons`} nextBtnName="Finish" />
+      <BottomNavigation backUrl={`/my-lessons/${id}/instruction`} nextUrl={`/my-lessons/${id}/summary`} nextBtnName="Next" />
       <div className="mb-[50px]"></div>
     </div>
   );
