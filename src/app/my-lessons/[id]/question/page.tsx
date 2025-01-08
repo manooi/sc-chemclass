@@ -11,8 +11,7 @@ export default function Home() {
 
   return (
     <div className="mt-8">
-
-      {id == '1' &&
+      {id == "1" && (
         <div className="flex flex-col md:flex-row justify-around gap-20 md:gap-0">
           <div className="text-center">
             <img className="w-3/4 mx-auto" src="/image/H+.png" />
@@ -27,11 +26,35 @@ export default function Home() {
             </h2>
           </div>
         </div>
-      }
+      )}
+
+      {id == "2" && (
+        <div className="flex flex-col md:flex-row md:items-end gap-y-6 md:gap-y-0">
+          <img className="w-3/4 md:w-1/2" src="/image/NaOH.png" />
+          <div className="bg-[#519856] p-2 text-white font-bold text-center md:min-w-[500px]">
+            <p>การไทเทรตระหว่างสารละลายกรดไฮโดรคลอริก</p>
+            <p>กับสารละลายโซเดียมไฮดรอกไซด์</p>
+          </div>
+        </div>
+      )}
+
+      {id == "3" && (
+        <div className="flex flex-col md:px-20 md:flex-row md:items-end gap-x-6">
+          <img className="w-full md:w-1/2" src="/image/ElectroChem.png" />
+          <div className="bg-[#519856] p-2 text-white font-bold sm:mb-0 md:mb-20">
+            <p className="text-sm md:text-base text-center">เซลล์เคมีไฟฟ้าที่สารทำปฏิกิริยากันแล้วให้พลังงานไฟฟ้า</p>
+          </div>
+        </div>
+      )}
 
       <div className="flex flex-col w-full md:px-20 mt-20 gap-y-10">
-        <HypothesisVaraibleDefinition question={LESSONS[id].question}></HypothesisVaraibleDefinition>
-        <BottomNavigation backUrl={`/my-lessons/${id}`} nextUrl={`/my-lessons/${id}/instruction`} />
+        <HypothesisVaraibleDefinition
+          question={LESSONS[id].question}
+        ></HypothesisVaraibleDefinition>
+        <BottomNavigation
+          backUrl={`/my-lessons/${id}`}
+          nextUrl={`/my-lessons/${id}/instruction`}
+        />
         <div className="mb-[50px]"></div>
       </div>
     </div>
