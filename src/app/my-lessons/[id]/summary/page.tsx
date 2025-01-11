@@ -1,16 +1,14 @@
-"use client";
-
-import { useParams } from "next/navigation";
-import { LESSONS, SummaryQuestion } from "../../lessons";
+import { SummaryQuestion } from "../../lessons";
 import BottomNavigation from "../../bottom-navigation";
+import { getSummaryQuestions } from "@/app/data-access/question";
 
-export default function Summary() {
-  const params = useParams();
-  const id = params?.id as string;
-  const lesson = LESSONS[id];
+export default async function Summary(props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
+  const id = params.id;
+  const summaryQuestion = await getSummaryQuestions(+id);
 
   function isSameGroup(item: SummaryQuestion, idx: number) {
-    return item.group == lesson.summaryQuestion[idx - 1]?.group;
+    return item.group == summaryQuestion[idx - 1]?.group;
   }
 
   return (
@@ -20,10 +18,10 @@ export default function Summary() {
       </h1>
 
       <div className="mt-8">
-        {lesson.summaryQuestion.map((i, idx) => {
+        {summaryQuestion.map((i, idx) => {
           const sameGroup = isSameGroup(i, idx);
           return (
-            <div>
+            <div key={idx}>
               {/* Question */}
               <div className={`flex flex-row ${!sameGroup ? "mt-6" : "mt-3"}`}>
                 <p className="mr-2" key={"group" + idx}>
@@ -40,6 +38,7 @@ export default function Summary() {
                 className="mt-1 ml-5 focus:outline-none w-full lg:w-1/2 p-2"
                 rows={i.textRow ?? 2}
                 placeholder="คำตอบ"
+                // defaultValue={"AA"}
               ></textarea>
             </div>
           );

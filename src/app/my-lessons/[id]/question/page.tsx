@@ -1,13 +1,12 @@
-"use client";
-
 import HypothesisVaraibleDefinition from "@/components/hypothesis-variable-definition/hypothesis-variable-definition";
 import BottomNavigation from "../../bottom-navigation";
-import { useParams } from "next/navigation";
-import { LESSONS } from "../../lessons";
+import { getQuestions } from "@/app/data-access/question";
 
-export default function Question() {
-  const params = useParams();
-  const id = params?.id as string;
+export default async function Question(props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
+  const id = params.id;
+
+  const question = await getQuestions(+id);
 
   return (
     <div className="mt-8">
@@ -49,7 +48,7 @@ export default function Question() {
 
       <div className="flex flex-col w-full md:px-20 mt-20 gap-y-10">
         <HypothesisVaraibleDefinition
-          question={LESSONS[id].question}
+          question={question}
         ></HypothesisVaraibleDefinition>
         <BottomNavigation
           backUrl={`/my-lessons/${id}`}

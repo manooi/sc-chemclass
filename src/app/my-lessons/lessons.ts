@@ -4,15 +4,17 @@ interface LessonInfo {
     iframeUrl: string,
     description: LessonDescription;
     simulation: SimulationDescription;
+
+    // This will be retreived in the backend
     question: Question;
     summaryQuestion: SummaryQuestion[];
 }
 
 export interface SummaryQuestion {
-    group: number;
+    group: number | null 
     question: string;
-    moreText?: string;
-    textRow?: number;
+    moreText?: string | null;
+    textRow?: number | null;
 }
 
 export interface LessonDescription {
@@ -23,11 +25,11 @@ export interface LessonDescription {
 }
 
 export interface Hypothesis {
-    hypothesis: string;
+    hypothesis: string | null;
     question: string;
-    upText: string;
-    downText: string;
-    moreText?: string;
+    upText: string | null;
+    downText: string | null;
+    moreText?: string | null;
 }
 
 export interface Variable {

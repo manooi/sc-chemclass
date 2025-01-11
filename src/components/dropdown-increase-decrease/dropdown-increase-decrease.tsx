@@ -1,4 +1,6 @@
-import { useState } from "react";
+"use client";
+
+import { useState } from 'react'
 
 export default function DropdownIncreaseDecrease({
   className,
@@ -6,8 +8,8 @@ export default function DropdownIncreaseDecrease({
   downText,
 }: {
   className?: string;
-  upText?: string;
-  downText?: string;
+  upText?: string | null;
+  downText?: string | null;
 }) {
   const [isOpen, setIsOpen] = useState(false); // Track if dropdown is open
   const [selected, setSelected] = useState("____");
