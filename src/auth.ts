@@ -4,6 +4,7 @@ import { z } from 'zod';
 import { getStudent } from '@/app/data-access/student';
 import { authConfig } from './auth.config';
 
+
 export const { auth, signIn, signOut, handlers } = NextAuth({
     ...authConfig,
     providers: [
@@ -19,8 +20,9 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
                     const user = await getStudent(username);
                     if (!user) return null;
 
-                    const passwordMatched = user.password === password;
-                    if (passwordMatched) {
+                    const bcrypt = require("bcrypt");
+                    const passwordsMatch = await bcrypt.compare(password, user.password);
+                    if (passwordsMatch) {
                         return {
                             id: username,
                             email: username,

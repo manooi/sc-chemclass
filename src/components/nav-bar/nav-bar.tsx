@@ -9,8 +9,8 @@ import { useSession } from "next-auth/react";
 export default function NavBar({ className }: { className: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const session = useSession();
-  const name = session.data?.user?.name;
-  const studentId = session.data?.user?.email;
+  const name = session.data?.user?.name ?? "-";
+  const studentId = session.data?.user?.email ?? "-";
 
   const handleMouseLeave = () => {
     setIsOpen(false);

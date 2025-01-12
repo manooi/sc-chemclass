@@ -11,14 +11,15 @@ export async function authenticate(
     await signIn('credentials', formData);
   }
   catch (error) {
-    console.error(error);
+    // console.error(error);
     if (error instanceof AuthError) {
-      switch (error.type) {
-        case 'CredentialsSignin':
-          return 'รหัสผิดนะนักเรียน :("';
-        default:
-          return 'Something went wrong.';
-      }
+      return 'ผิด ลองใส่ใหม่น้า :("';
+      // switch (error.type) {
+      //   case 'CredentialsSignin':
+      //     return 'รหัสผิดนะนักเรียน :("';
+      //   default:
+      //     return 'Something went wrong.';
+      // }
     }
     throw error;
   }

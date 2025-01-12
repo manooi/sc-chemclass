@@ -5,6 +5,11 @@ const nextConfig = {
         // your project has ESLint errors.
         ignoreDuringBuilds: true,
     },
+    // https://github.com/kelektiv/node.bcrypt.js/issues/979
+    webpack: (config) => {
+        config.externals = [...config.externals, "bcrypt"];
+        return config;
+    },
 };
 
 export default nextConfig;
