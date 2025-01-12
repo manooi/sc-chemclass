@@ -2,12 +2,21 @@ export function InitialAndDependentVariables({
   name,
   type,
   options,
+  value,
+  onChange
 }: {
   name: string;
   type: "select" | "text";
   options?: string[];
+  value?: string | null;
+  onChange : (value: string) => void
 }) {
-  return (
+
+  function handleChange(value: string): void {
+    onChange(value);
+  }
+
+   return (
     <div className="flex justify-around gap-10">
       <div className="w-full text-center bg-white p-2 font-bold rounded-md">
         {name}
@@ -18,7 +27,10 @@ export function InitialAndDependentVariables({
             className="w-full focus:outline-none"
             name="var"
             id="var"
-            defaultValue={"DEFAULT"}
+            defaultValue={ value ?? "DEFAULT"}
+            onChange={(e) => {
+              handleChange(e.target.value)
+            }}
           >
             <option value="DEFAULT" disabled>
               เลือก
@@ -35,10 +47,12 @@ export function InitialAndDependentVariables({
             className="w-full focus:outline-none"
             placeholder="คำตอบ"
             type="text"
+            defaultValue={value ?? ""}
+            onChange={(e) => {
+              handleChange(e.target.value);
+            }}
           />
         )}
-
-        {/* {type == "text" && <input>>} */}
       </div>
     </div>
   );

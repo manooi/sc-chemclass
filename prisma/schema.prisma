@@ -14,14 +14,15 @@ datasource db {
 }
 
 model Answer {
-  answer_id   Int    @id
+  answer_id   Int      @id @default(autoincrement())
   student_id  Int
   question_id Int
-  answer      String
+  answer      String?
+  question    Question @relation(fields: [question_id], references: [question_id])
 }
 
 model Question {
-  question_id       Int    @id
+  question_id       Int      @id
   lesson_id         Int
   question_type_id  Int
   question          String
@@ -33,4 +34,5 @@ model Question {
   variables_options String?
   group             Int?
   text_row          Int?
+  answers           Answer[]
 }

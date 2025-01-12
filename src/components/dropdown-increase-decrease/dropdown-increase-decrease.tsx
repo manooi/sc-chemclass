@@ -6,13 +6,17 @@ export default function DropdownIncreaseDecrease({
   className,
   upText,
   downText,
+  value,
+  onChange
 }: {
   className?: string;
   upText?: string | null;
   downText?: string | null;
+  value?: string | null;
+  onChange: (value: string) => void
 }) {
   const [isOpen, setIsOpen] = useState(false); // Track if dropdown is open
-  const [selected, setSelected] = useState("____");
+  const [selected, setSelected] = useState(value ?? "____");
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen); // Toggle dropdown visibility
@@ -21,6 +25,7 @@ export default function DropdownIncreaseDecrease({
   const handleSelect = (value: string) => {
     setSelected(value);
     setIsOpen(false);
+    onChange(value)
   };
 
   if (!upText) {

@@ -1,12 +1,30 @@
+"use client";
+
 import HypothesisVaraibleDefinition from "@/components/hypothesis-variable-definition/hypothesis-variable-definition";
 import BottomNavigation from "../../bottom-navigation";
-import { getQuestions } from "@/app/data-access/question";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { Question } from "../../lessons";
+import HttpClient from "@/app/lib/http";
 
-export default async function Question(props: { params: Promise<{ id: string }> }) {
-  const params = await props.params;
-  const id = params.id;
+export default function QuestionPage() {
+  const params = useParams();
+  const id = params?.id as string;
 
-  const question = await getQuestions(+id);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [questionsAnswers, setQuestionsAnswers] = useState({} as Question);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const questionsAnswers = await HttpClient.get<Question>(
+        "/api/question-answer?lessonId=" + id
+      );
+      setQuestionsAnswers(questionsAnswers.data);
+      setIsLoaded(true)
+      console.log(questionsAnswers.data);
+    };
+    fetchData();
+  }, []);
 
   return (
     <div className="mt-8">
@@ -26,7 +44,6 @@ export default async function Question(props: { params: Promise<{ id: string }> 
           </div>
         </div>
       )}
-
       {id == "2" && (
         <div className="flex flex-col md:flex-row md:items-end gap-y-6 md:gap-y-0">
           <img className="w-3/4 md:w-1/2" src="/image/NaOH.png" />
@@ -36,26 +53,29 @@ export default async function Question(props: { params: Promise<{ id: string }> 
           </div>
         </div>
       )}
-
       {id == "3" && (
         <div className="flex flex-col md:px-20 md:flex-row md:items-end gap-x-6">
           <img className="w-full md:w-1/2" src="/image/ElectroChem.png" />
           <div className="bg-[#519856] p-2 text-white font-bold sm:mb-0 md:mb-20">
-            <p className="text-sm md:text-base text-center">เซลล์เคมีไฟฟ้าที่สารทำปฏิกิริยากันแล้วให้พลังงานไฟฟ้า</p>
+            <p className="text-sm md:text-base text-center">
+              เซลล์เคมีไฟฟ้าที่สารทำปฏิกิริยากันแล้วให้พลังงานไฟฟ้า
+            </p>
           </div>
         </div>
       )}
 
-      <div className="flex flex-col w-full md:px-20 mt-20 gap-y-10">
-        <HypothesisVaraibleDefinition
-          question={question}
-        ></HypothesisVaraibleDefinition>
-        <BottomNavigation
-          backUrl={`/my-lessons/${id}`}
-          nextUrl={`/my-lessons/${id}/instruction`}
-        />
-        <div className="mb-[50px]"></div>
-      </div>
+      {isLoaded && (
+        <div className="flex flex-col w-full md:px-20 mt-20 gap-y-10">
+          <HypothesisVaraibleDefinition
+            question={questionsAnswers}
+          ></HypothesisVaraibleDefinition>
+          <BottomNavigation
+            backUrl={`/my-lessons/${id}`}
+            nextUrl={`/my-lessons/${id}/instruction`}
+          />
+          <div className="mb-[50px]"></div>
+        </div>
+      )}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { SummaryQuestion } from "../../lessons";
 import BottomNavigation from "../../bottom-navigation";
 import { getSummaryQuestions } from "@/app/data-access/question";
+import { finalSubmit } from "./action";
 
 export default async function Summary(props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
@@ -12,7 +13,8 @@ export default async function Summary(props: { params: Promise<{ id: string }> }
   }
 
   return (
-    <div className="">
+    <form action={finalSubmit}>
+      <input hidden type="text" name="questionIds" defaultValue={summaryQuestion.map((i)=> i.questionId).join(",")}/>
       <h1 className="text-[1.5rem] md:text-3xl font-bold mt-6">
         สรุปและอภิปรายผลการทดลอง
       </h1>
@@ -38,8 +40,10 @@ export default async function Summary(props: { params: Promise<{ id: string }> }
                 className="mt-1 ml-5 focus:outline-none w-full lg:w-1/2 p-2"
                 rows={i.textRow ?? 2}
                 placeholder="คำตอบ"
-                // defaultValue={"AA"}
+                name="answers"
+                defaultValue={i.answer ?? ""}
               ></textarea>
+
             </div>
           );
         })}
@@ -50,11 +54,11 @@ export default async function Summary(props: { params: Promise<{ id: string }> }
         backUrl={`/my-lessons/${id}/simulation`}
         nextBtnName="Finish"
       >
-        <button className="bg-green-300 hover:bg-green-400 p-2 px-4 rounded-md">
+        <button type="submit" className="bg-green-300 hover:bg-green-400 p-2 px-4 rounded-md">
           Submit :)
         </button>
       </BottomNavigation>
       <div className="mb-[50px]"></div>
-    </div>
+    </form>
   );
 }

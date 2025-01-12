@@ -1,5 +1,5 @@
 import { Question, SummaryQuestion } from '../my-lessons/lessons';
-import Prisma from "../../lib/prisma";
+import Prisma from "../lib/prisma";
 
 export enum QUESTION_TYPE_ID {
     "HYPOTHESIS" = 1,
@@ -8,7 +8,7 @@ export enum QUESTION_TYPE_ID {
     "SUMMARY" = 4
 }
 
-export async function getQuestions(lessonId: number) {
+export async function getQuestionsAnswers(lessonId: number) {
     const prisma = Prisma;
     const questions = await prisma.question.findMany(
         {
@@ -25,6 +25,7 @@ export async function getQuestions(lessonId: number) {
                     seq: 'asc',
                 },
             ],
+            include: { answers: { where: { student_id: 1 } } }
         }
     );
 
@@ -38,34 +39,47 @@ export async function getQuestions(lessonId: number) {
     }
 
     for (let q of questions) {
+        const fisrtAnswerOfNull = q.answers[0]?.answer ?? null;
         switch (q.question_type_id) {
             case QUESTION_TYPE_ID.HYPOTHESIS:
                 question.hypos.push({
+                    questionId: q.question_id,
                     hypothesis: q.hypothesis,
                     question: q.question,
                     upText: q.up_text,
                     downText: q.down_text,
                     moreText: q.more_text,
+                    answer: fisrtAnswerOfNull
                 });
                 break;
             case QUESTION_TYPE_ID.VARIABLES:
                 if (q.seq == 1) {
                     const splittedOptions = q.variables_options?.split(";") ?? [];
                     question.vairable.variables.push(...splittedOptions);
+                    question.vairable.varQuestionId = q.question_id;
+                    question.vairable.varAnswer = fisrtAnswerOfNull
                 }
                 else if (q.seq == 2) {
                     const splittedOptions = q.variables_options?.split(";") ?? [];
                     question.vairable.dependents.push(...splittedOptions);
+                    question.vairable.depQuestionId = q.question_id;
+                    question.vairable.depAnswer = fisrtAnswerOfNull
+                }
+                else if(q.seq == 3) {
+                    question.controlVariableQuestionId = q.question_id;
+                    question.controlVariableAnswer = fisrtAnswerOfNull;
                 }
                 break;
             case QUESTION_TYPE_ID.DEFINITIONS:
                 question.definition = q.question;
+                question.definitionQuestionId = q.question_id;
+                question.definitionAnswer = fisrtAnswerOfNull;
                 break;
             default:
                 break;
         }
     }
-
+    // console.log(question);
     return question;
 }
 
@@ -84,6 +98,7 @@ export async function getSummaryQuestions(lessonId: number) {
                 seq: 'asc',
             },
         ],
+        include: { answers: { where: { student_id: 1 } } }
     });
 
     const summaryQuestions: SummaryQuestion[] = [];
@@ -92,10 +107,12 @@ export async function getSummaryQuestions(lessonId: number) {
         switch (q.question_type_id) {
             case QUESTION_TYPE_ID.SUMMARY:
                 summaryQuestions.push({
+                    questionId: q.question_id,
                     group: q.group,
                     question: q.question,
                     moreText: q.more_text,
-                    textRow: q.text_row
+                    textRow: q.text_row,
+                    answer: q.answers[0]?.answer ?? null
                 });
                 break;
             default:

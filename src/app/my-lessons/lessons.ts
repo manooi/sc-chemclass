@@ -11,10 +11,14 @@ interface LessonInfo {
 }
 
 export interface SummaryQuestion {
-    group: number | null 
+    questionId?: number;
+
+    group: number | null
     question: string;
     moreText?: string | null;
     textRow?: number | null;
+
+    answer?: string | null;
 }
 
 export interface LessonDescription {
@@ -25,22 +29,38 @@ export interface LessonDescription {
 }
 
 export interface Hypothesis {
+    questionId?: number;
+
     hypothesis: string | null;
     question: string;
     upText: string | null;
     downText: string | null;
     moreText?: string | null;
+
+    answer?: string | null;
 }
 
 export interface Variable {
+    varQuestionId?: number;
+    depQuestionId?: number;
+
     variables: string[];
     dependents: string[];
+
+    varAnswer?: string | null;
+    depAnswer?: string | null;
 }
 
 export interface Question {
     hypos: Hypothesis[];
     vairable: Variable;
+
+    definitionQuestionId?: number;
     definition: string;
+    definitionAnswer?: string | null;
+
+    controlVariableQuestionId?: number;
+    controlVariableAnswer?: string | null;
 }
 
 export interface SimulationDescription {
