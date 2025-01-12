@@ -1,9 +1,12 @@
 import Prisma from "../lib/prisma";
+import { getAuth } from "./auth-util";
 
 export async function saveAnswer(questionId: number, answer: string | null) {
+  const { studentId } = await getAuth();
+
   const existingAnswer = await Prisma.answer.findFirst({
     where: {
-      student_id: 1,
+      student_id: studentId,
       question_id: questionId,
     },
   });
@@ -22,7 +25,7 @@ export async function saveAnswer(questionId: number, answer: string | null) {
     return await Prisma.answer.create({
       data: {
         answer: answer,
-        student_id: 1,
+        student_id: studentId,
         question_id: questionId,
       },
     });

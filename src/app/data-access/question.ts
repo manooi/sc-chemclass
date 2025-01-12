@@ -1,5 +1,6 @@
 import { Question, SummaryQuestion } from '../my-lessons/lessons';
 import Prisma from "../lib/prisma";
+import { getAuth } from './auth-util';
 
 export enum QUESTION_TYPE_ID {
     "HYPOTHESIS" = 1,
@@ -9,6 +10,8 @@ export enum QUESTION_TYPE_ID {
 }
 
 export async function getQuestionsAnswers(lessonId: number) {
+    const { studentId } = await getAuth();
+    
     const prisma = Prisma;
     const questions = await prisma.question.findMany(
         {
@@ -25,7 +28,7 @@ export async function getQuestionsAnswers(lessonId: number) {
                     seq: 'asc',
                 },
             ],
-            include: { answers: { where: { student_id: 1 } } }
+            include: { answers: { where: { student_id: studentId } } }
         }
     );
 
@@ -79,11 +82,11 @@ export async function getQuestionsAnswers(lessonId: number) {
                 break;
         }
     }
-    // console.log(question);
     return question;
 }
 
 export async function getSummaryQuestions(lessonId: number) {
+    const { studentId } = await getAuth();
     const prisma = Prisma;
     const questions = await prisma.question.findMany({
         where: {
@@ -98,7 +101,7 @@ export async function getSummaryQuestions(lessonId: number) {
                 seq: 'asc',
             },
         ],
-        include: { answers: { where: { student_id: 1 } } }
+        include: { answers: { where: { student_id: studentId } } }
     });
 
     const summaryQuestions: SummaryQuestion[] = [];

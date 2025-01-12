@@ -1,25 +1,34 @@
 "use client";
 
-import { FaReact, FaUserGraduate } from "react-icons/fa";
+import { FaUserGraduate } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useState } from "react";
+import { LogOut } from "@/app/lib/action";
+import { useSession } from "next-auth/react";
 
 export default function NavBar({ className }: { className: string }) {
-
   const [isOpen, setIsOpen] = useState(false);
+  const session = useSession();
+  const name = session.data?.user?.name;
+  const studentId = session.data?.user?.email;
 
   const handleMouseLeave = () => {
     setIsOpen(false);
   };
 
   return (
-    <nav className={"bg-green-800 text-white shadow-lg" + ` ${className}`}
-      onMouseLeave={handleMouseLeave}>
+    <nav
+      className={"bg-green-800 text-white shadow-lg" + ` ${className}`}
+      onMouseLeave={handleMouseLeave}
+    >
       {/* Medium screen */}
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-12">
           <div className="flex gap-x-4">
-            <div className="block cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
+            <div
+              className="block cursor-pointer"
+              onClick={() => setIsOpen(!isOpen)}
+            >
               <GiHamburgerMenu size={27} />
             </div>
             <div className="flex items-center">
@@ -30,12 +39,12 @@ export default function NavBar({ className }: { className: string }) {
             </div>
           </div>
           <div className="hidden md:flex space-x-4 font-bold">
-            <a
+            {/* <a
               href="/home"
               className="hover:bg-green-700 px-3 py-2 rounded-md text-sm"
             >
               Home
-            </a>
+            </a> */}
             <a
               href="/my-lessons"
               className="hover:bg-green-700 px-3 py-2 rounded-md text-sm"
@@ -61,23 +70,32 @@ export default function NavBar({ className }: { className: string }) {
               <span>
                 <FaUserGraduate size={20} className="inline-block mr-2" />
               </span>
-              Jay, 3600{" "}
+              {`${name}, ${studentId}`}
             </p>
+            <form action={LogOut}>
+              <button type="submit" className="ml-3">Logout</button>
+            </form>
           </div>
         </div>
       </div>
 
       {/* Small screen */}
-      {isOpen &&
-        <div className="bg-green-700 block relative z-50" >
-          <a href="/home" className="block px-4 py-2 text-sm hover:bg-green-600">
+      {isOpen && (
+        <div className="bg-green-700 block relative z-50">
+          <a
+            href="/home"
+            className="block px-4 py-2 text-sm hover:bg-green-600"
+          >
             Home
           </a>
-          <a href="/my-lessons" className="block px-4 py-2 text-sm hover:bg-green-600">
+          <a
+            href="/my-lessons"
+            className="block px-4 py-2 text-sm hover:bg-green-600"
+          >
             My Lessons
           </a>
         </div>
-      }
+      )}
     </nav>
   );
 }

@@ -2,34 +2,10 @@ import NextAuth from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import { z } from 'zod';
 import { getStudent } from '@/app/data-access/student';
+import { authConfig } from './auth.config';
 
-export const { auth, signIn, signOut } = NextAuth({
-    pages: {
-        signIn: '/login',
-    },
-    callbacks: {
-        redirect: async ({ url, baseUrl }) => {
-            if (url.includes('callbackUrl')) {
-                const parsedUrl = new URL(url);
-                const callbackUrl = parsedUrl.searchParams.get('callbackUrl') ?? "";
-                return Promise.resolve(callbackUrl);
-            }
-            return Promise.resolve(baseUrl + "/my-lessons")
-        },
-        authorized({ auth, request: { nextUrl } }) {
-            const isLoggedIn = !!auth?.user;
-
-            const isOnMyLessons = nextUrl.pathname.startsWith('/my-lessons');
-            if (isOnMyLessons) {
-                if (isLoggedIn) return true;
-                return false;
-            }
-            else if (isLoggedIn) {
-                return Response.redirect(new URL('/my-lessons/', nextUrl));
-            }
-            return true;
-        },
-    },
+export const { auth, signIn, signOut, handlers } = NextAuth({
+    ...authConfig,
     providers: [
         Credentials({
             async authorize(credentials) {
@@ -47,7 +23,8 @@ export const { auth, signIn, signOut } = NextAuth({
                     if (passwordMatched) {
                         return {
                             id: username,
-                            email: username
+                            email: username,
+                            name: user.student_name
                         };
                     }
                     console.log('Invalid credentials');
