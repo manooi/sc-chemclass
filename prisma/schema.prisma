@@ -36,3 +36,9 @@ model Question {
   text_row          Int?
   answers           Answer[]
 }
+
+model Student {
+  student_id   Int    @id
+  student_name String
+  password     String
+}

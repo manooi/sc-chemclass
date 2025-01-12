@@ -1,29 +1,14 @@
-"use client";
+'use client'
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
 import "./style.css";
+import { authenticate } from "../lib/action";
+import { useFormState } from "react-dom";
 
 export default function LoginPage() {
-  const [username, setusername] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const router = useRouter();
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!username || !password) {
-      setError("กรอกให้ครบ!");
-      return;
-    }
-
-    if (username === "user@example.com" && password === "password123") {
-      router.push("/my-lessons");
-    } else {
-      setError("รหัสผิดนะนักเรียน :(");
-    }
-  };
+  const [errorMessage, formAction, isPending] = useFormState(
+    authenticate,
+    undefined,
+  );
 
   return (
     <div className="">
@@ -32,7 +17,7 @@ export default function LoginPage() {
       <div className="mx-auto max-w-sm mt-16 p-6 border border-gray-100 rounded-md shadow-md bg-white">
         <h2 className="text-2xl font-bold mb-4 text-center">เข้าสู่ระบบ</h2>
 
-        <form onSubmit={handleSubmit}>
+        <form action={formAction}>
           <div className="mb-6">
             <label htmlFor="username" className="block text-md font-medium mb-1">
               ชื่อผู้ใช้
@@ -40,8 +25,7 @@ export default function LoginPage() {
             <input
               type="username"
               id="username"
-              value={username}
-              onChange={(e) => setusername(e.target.value)}
+              name="username"
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="กรอกชื่อผู้ใช้"
             />
@@ -54,8 +38,7 @@ export default function LoginPage() {
             <input
               type="password"
               id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              name="password"
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="กรอกรหัสผ่าน"
             />
@@ -69,7 +52,7 @@ export default function LoginPage() {
           </button>
         </form>
 
-        {error && <p className="text-red-500 text-center mt-4">{error}</p>}
+        {errorMessage && <p className="text-red-500 text-center mt-4">{errorMessage}</p>}
       </div>
 
       <img className="h-[300px] mx-auto" src="/image/logo.png"/>
