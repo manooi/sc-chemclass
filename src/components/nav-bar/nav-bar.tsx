@@ -34,7 +34,7 @@ export default function NavBar({ className }: { className: string }) {
             <div className="flex items-center">
               <a href="/my-lesson" className="text-lg font-semibold">
                 {/* <FaReact className="inline-block mr-3" size={27} /> */}
-                SC Chemclass
+                SC's Chem
               </a>
             </div>
           </div>

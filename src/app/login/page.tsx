@@ -12,9 +12,9 @@ export default function LoginPage() {
 
   return (
     <div className="">
-      <h1 className="text-5xl text-center mt-10 font-bold">เคมีสดชื่น</h1>
+      <h1 className="text-5xl text-center mt-10 font-bold">SC's Chem</h1>
 
-      <div className="mx-auto max-w-sm mt-16 p-6 border border-gray-100 rounded-md shadow-md bg-white">
+      <div className="mx-auto max-w-sm mt-12 p-6 md:border md:border-gray-100 rounded-md md:shadow-md bg-white">
         <h2 className="text-2xl font-bold mb-4 text-center">เข้าสู่ระบบ</h2>
 
         <form action={formAction}>
@@ -46,7 +46,7 @@ export default function LoginPage() {
 
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none"
+            className="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 focus:outline-none"
           >
             ล็อคอิน
           </button>
@@ -55,7 +55,7 @@ export default function LoginPage() {
         {errorMessage && <p className="text-red-500 text-center mt-4">{errorMessage}</p>}
       </div>
 
-      <img className="h-[300px] mx-auto" src="/image/logo.png"/>
+      <img className="h-[200px] md:h-[300px] mx-auto" src="/image/logo.png"/>
     </div>
   );
 }
