@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import { z } from 'zod';
-import { getStudent } from '@/app/data-access/student';
+import { getUser } from '@/app/data-access/user';
 import { authConfig } from './auth.config';
 
 
@@ -17,7 +17,7 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
 
                 if (parsedCredentials.success) {
                     const { username, password } = parsedCredentials.data;
-                    const user = await getStudent(username);
+                    const user = await getUser(username);
                     if (!user) return null;
 
                     const bcrypt = require("bcrypt");
@@ -26,7 +26,7 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
                         return {
                             id: username,
                             email: username,
-                            name: user.student_name
+                            name: user.name
                         };
                     }
                     console.log('Invalid credentials');

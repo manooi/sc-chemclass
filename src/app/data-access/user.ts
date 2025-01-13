@@ -1,9 +1,9 @@
 import Prisma from "../lib/prisma";
 
-export async function getStudent(username: string) {
-    const student = await Prisma.student.findFirst({
+export async function getUser(username: string) {
+    const student = await Prisma.user.findFirst({
         where: {
-            student_id: +username
+            username: username
         }
     });
 

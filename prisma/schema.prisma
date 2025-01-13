@@ -15,7 +15,7 @@ datasource db {
 
 model Answer {
   answer_id   Int      @id @default(autoincrement())
-  student_id  Int
+  username    String
   question_id Int
   answer      String?
   question    Question @relation(fields: [question_id], references: [question_id])
@@ -37,8 +37,8 @@ model Question {
   answers           Answer[]
 }
 
-model Student {
-  student_id   Int    @id
-  student_name String
-  password     String
+model User {
+  username String @id
+  name     String
+  password String
 }

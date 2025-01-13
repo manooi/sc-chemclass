@@ -7,9 +7,8 @@ export async function getAuth() {
     return {
         expires: a?.expires ?? null,
         user: user ?? null,
-        email: user?.email ?? null,
+        email: user?.email ?? "",
         id: user?.id ?? null,
-        image: user?.image ?? null,
-        studentId: Number(user?.email ?? null)
+        username: user?.email ?? "",
     }
 }

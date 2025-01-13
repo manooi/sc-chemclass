@@ -32,7 +32,7 @@ export default function NavBar({ className }: { className: string }) {
               <GiHamburgerMenu size={27} />
             </div>
             <div className="flex items-center">
-              <a href="/home" className="text-lg font-semibold">
+              <a href="/my-lesson" className="text-lg font-semibold">
                 {/* <FaReact className="inline-block mr-3" size={27} /> */}
                 SC Chemclass
               </a>
@@ -50,12 +50,6 @@ export default function NavBar({ className }: { className: string }) {
               className="hover:bg-green-700 px-3 py-2 rounded-md text-sm"
             >
               My Lessons
-            </a>
-            <a
-              href="#"
-              className="hover:bg-green-700 px-3 py-2 rounded-md text-sm"
-            >
-              Assignments
             </a>
             <a
               href="#"
@@ -81,18 +75,18 @@ export default function NavBar({ className }: { className: string }) {
 
       {/* Small screen */}
       {isOpen && (
-        <div className="bg-green-700 block relative z-50">
-          <a
-            href="/home"
-            className="block px-4 py-2 text-sm hover:bg-green-600"
-          >
-            Home
-          </a>
+        <div className="bg-green-700 block md:hidden relative z-50">
           <a
             href="/my-lessons"
             className="block px-4 py-2 text-sm hover:bg-green-600"
           >
             My Lessons
+          </a>
+          <a
+            href="#"
+            className="block px-4 py-2 text-sm hover:bg-green-600"
+          >
+            Forum
           </a>
         </div>
       )}
