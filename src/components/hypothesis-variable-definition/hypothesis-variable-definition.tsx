@@ -68,7 +68,7 @@ export default function HypothesisVaraibleDefinition({
       {/* Variables */}
       <div className="rounded-lg p-4 bg-[#72B944] bg-opacity-[24%]">
         <h2 className="text-xl font-bold mb-4">ตัวแปร</h2>
-        <div className="flex flex-col gap-y-4">
+        <div className="flex flex-col gap-y-6 md:gap-y-4">
           <InitialAndDependentVariables
             name="ตัวแปรต้น"
             type="select"

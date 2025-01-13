@@ -17,7 +17,7 @@ export function InitialAndDependentVariables({
   }
 
    return (
-    <div className="flex justify-around gap-10">
+    <div className="flex flex-col md:flex-row justify-around gap-2 md:gap-6">
       <div className="w-full text-center bg-white p-2 font-bold rounded-md">
         {name}
       </div>
