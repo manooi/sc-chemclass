@@ -51,10 +51,11 @@ export default function NavBar({ className }: { className: string }) {
               บทเรียน
             </a>
             <a
-              href="#"
+              href="https://padlet.com/663183/sc-class-mjwdafr4koddgau3"
               className="hover:bg-green-700 px-3 py-2 rounded-md text-md"
+              target="_blank"
             >
-              ฟอรั่ม
+              Padlet
             </a>
           </div>
 
@@ -84,10 +85,11 @@ export default function NavBar({ className }: { className: string }) {
             บทเรียน
           </a>
           <a
-            href="#"
+            href="https://padlet.com/663183/sc-class-mjwdafr4koddgau3"
             className="block px-4 py-2 text-sm hover:bg-green-600"
+            target="_blank"
           >
-            ฟอรั่ม
+          Padlet
           </a>
         </div>
       )}
