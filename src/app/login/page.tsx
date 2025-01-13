@@ -1,6 +1,6 @@
 'use client'
 
-import "./style.css";
+import styles from "./style.module.css";
 import { authenticate } from "../lib/action";
 import { useFormState } from "react-dom";
 
@@ -11,8 +11,9 @@ export default function LoginPage() {
   );
 
   return (
-    <div className="">
-      <h1 className="text-5xl text-center mt-10 font-bold">เคมีสดชื่น</h1>
+    <div className={styles.body}>
+      <div className="h-12"></div>
+      <h1 className="text-5xl text-center font-bold">เคมีสดชื่น</h1>
 
       <div className="mx-auto max-w-sm mt-12 p-6 md:border md:border-gray-100 rounded-md md:shadow-md bg-white">
         <h2 className="text-2xl font-bold mb-4 text-center">เข้าสู่ระบบ</h2>
