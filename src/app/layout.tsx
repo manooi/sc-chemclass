@@ -33,6 +33,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap" rel="stylesheet" />
+        <link rel="icon" href="/icon?<generated>" type="image/<generated>" sizes="<generated>" />
       </head>
       <body
         // overflow-y-scroll fix problem with navbar
