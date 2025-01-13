@@ -32,8 +32,8 @@ export default function NavBar({ className }: { className: string }) {
               <GiHamburgerMenu size={27} />
             </div>
             <div className="flex items-center">
-              <a href="/my-lesson" className="hidden md:block text-lg font-semibold">
-                SC's Chem
+              <a href="/my-lesson" className="hidden md:block text-xl font-bold">
+                เคมีสดชื่น
               </a>
             </div>
           </div>
@@ -46,15 +46,15 @@ export default function NavBar({ className }: { className: string }) {
             </a> */}
             <a
               href="/my-lessons"
-              className="hover:bg-green-700 px-3 py-2 rounded-md text-sm"
+              className="hover:bg-green-700 px-3 py-2 rounded-md text-md"
             >
-              My Lessons
+              บทเรียน
             </a>
             <a
               href="#"
-              className="hover:bg-green-700 px-3 py-2 rounded-md text-sm"
+              className="hover:bg-green-700 px-3 py-2 rounded-md text-md"
             >
-              Forum
+              ฟอรั่ม
             </a>
           </div>
 
@@ -66,8 +66,9 @@ export default function NavBar({ className }: { className: string }) {
               {(name == username) && (<>{name}</>) }
               {(name != username) && (<>{name}, {username}</>) }
             </p>
+            <p className="ml-1">|</p>
             <form action={LogOut}>
-              <button type="submit" className="ml-3">Logout</button>
+              <button type="submit" className="ml-1 font-bold">ออกจากระบบ</button>
             </form>
           </div>
         </div>
@@ -80,13 +81,13 @@ export default function NavBar({ className }: { className: string }) {
             href="/my-lessons"
             className="block px-4 py-2 text-sm hover:bg-green-600"
           >
-            My Lessons
+            บทเรียน
           </a>
           <a
             href="#"
             className="block px-4 py-2 text-sm hover:bg-green-600"
           >
-            Forum
+            ฟอรั่ม
           </a>
         </div>
       )}
