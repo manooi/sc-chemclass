@@ -10,7 +10,7 @@ export default function NavBar({ className }: { className: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const session = useSession();
   const name = session.data?.user?.name ?? "-";
-  const studentId = session.data?.user?.email ?? "-";
+  const username = session.data?.user?.email ?? "-";
 
   const handleMouseLeave = () => {
     setIsOpen(false);
@@ -32,8 +32,7 @@ export default function NavBar({ className }: { className: string }) {
               <GiHamburgerMenu size={27} />
             </div>
             <div className="flex items-center">
-              <a href="/my-lesson" className="text-lg font-semibold">
-                {/* <FaReact className="inline-block mr-3" size={27} /> */}
+              <a href="/my-lesson" className="hidden md:block text-lg font-semibold">
                 SC's Chem
               </a>
             </div>
@@ -64,7 +63,8 @@ export default function NavBar({ className }: { className: string }) {
               <span>
                 <FaUserGraduate size={20} className="inline-block mr-2" />
               </span>
-              {`${name}, ${studentId}`}
+              {(name == username) && (<>{name}</>) }
+              {(name != username) && (<>{name}, {username}</>) }
             </p>
             <form action={LogOut}>
               <button type="submit" className="ml-3">Logout</button>
