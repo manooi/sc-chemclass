@@ -2,7 +2,7 @@ import type { NextAuthConfig } from 'next-auth';
 
 export const authConfig = {
     pages: {
-        signIn: '/login',
+        signIn: '/login'
     },
     callbacks: {
         redirect: ({ url, baseUrl }) => {
@@ -14,15 +14,18 @@ export const authConfig = {
         },
         authorized({ auth, request: { nextUrl } }) {
             const isLoggedIn = !!auth?.user;
-            const isLoginPage = nextUrl.pathname === '/login';
+            // const isLoginPage = nextUrl.pathname === '/login';
 
-            if (!isLoggedIn && !isLoginPage) {
-                return Response.redirect(new URL('/login', nextUrl));
+            if (!isLoggedIn) {
+                // if (!isLoginPage) {
+                //     return Response.redirect(new URL('/login', nextUrl));
+                // }
+                return false;
             }
 
-            if (isLoggedIn && isLoginPage) {
-                return Response.redirect(new URL('/my-lessons', nextUrl));
-            }
+            // if (isLoggedIn && isLoginPage) {
+            //     return Response.redirect(new URL('/my-lessons', nextUrl));
+            // }
 
             return true;
         },
