@@ -34,7 +34,7 @@ export default function NavBar({ className }: { className: string }) {
             </div>
             <div className="flex items-center">
               <a
-                href="/my-lesson"
+                href="/my-lessons"
                 className="hidden md:block text-xl font-bold"
               >
                 เคมีสดชื่น
