@@ -11,7 +11,6 @@ export default function NavBar({ className }: { className: string }) {
   const session = useSession();
   const name = session.data?.user?.name ?? "-";
   const username = session.data?.user?.email ?? "-";
-  const isAdmin = username === "Adminsc";
 
   const handleMouseLeave = () => {
     setIsOpen(false);
@@ -33,29 +32,24 @@ export default function NavBar({ className }: { className: string }) {
               <GiHamburgerMenu size={27} />
             </div>
             <div className="flex items-center">
-              <a
-                href="/my-lesson"
-                className="hidden md:block text-xl font-bold"
-              >
+              <a href="/my-lesson" className="hidden md:block text-xl font-bold">
                 เคมีสดชื่น
               </a>
             </div>
           </div>
           <div className="hidden md:flex space-x-4 font-bold">
+            {/* <a
+              href="/home"
+              className="hover:bg-green-700 px-3 py-2 rounded-md text-sm"
+            >
+              Home
+            </a> */}
             <a
               href="/my-lessons"
               className="hover:bg-green-700 px-3 py-2 rounded-md text-md"
             >
               บทเรียน
             </a>
-            {isAdmin && (
-              <a
-                href="/report"
-                className="hover:bg-green-700 px-3 py-2 rounded-md text-md"
-              >
-                Report
-              </a>
-            )}
             <a
               href="https://padlet.com/663183/sc-class-mjwdafr4koddgau3"
               className="hover:bg-green-700 px-3 py-2 rounded-md text-md"
@@ -70,18 +64,12 @@ export default function NavBar({ className }: { className: string }) {
               <span>
                 <FaUserGraduate size={20} className="inline-block mr-2" />
               </span>
-              {name == username && <>{name}</>}
-              {name != username && (
-                <>
-                  {name}, {username}
-                </>
-              )}
+              {(name == username) && (<>{name}</>) }
+              {(name != username) && (<>{name}, {username}</>) }
             </p>
             <p className="ml-1">|</p>
             <form action={LogOut}>
-              <button type="submit" className="ml-1 font-bold">
-                ออกจากระบบ
-              </button>
+              <button type="submit" className="ml-1 font-bold">ออกจากระบบ</button>
             </form>
           </div>
         </div>
@@ -101,7 +89,7 @@ export default function NavBar({ className }: { className: string }) {
             className="block px-4 py-2 text-sm hover:bg-green-600"
             target="_blank"
           >
-            Padlet
+          Padlet
           </a>
         </div>
       )}

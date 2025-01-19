@@ -5,25 +5,25 @@ export const authConfig = {
         signIn: '/login',
     },
     callbacks: {
-        redirect: ({ url, baseUrl }) => {
-            const parsedUrl = new URL(url, baseUrl);
-            const callbackUrl = parsedUrl.searchParams.get('callbackUrl');
-
-            // Redirect to callbackUrl if it exists, otherwise default to '/my-lessons'
-            return callbackUrl ? callbackUrl : `${baseUrl}/my-lessons`;
+        redirect: async ({ url, baseUrl }) => {
+            if (url.includes('callbackUrl')) {
+                const parsedUrl = new URL(url);
+                const callbackUrl = parsedUrl.searchParams.get('callbackUrl') ?? "";
+                return Promise.resolve(callbackUrl);
+            }
+            return Promise.resolve(baseUrl + "/my-lessons")
         },
         authorized({ auth, request: { nextUrl } }) {
             const isLoggedIn = !!auth?.user;
-            const isLoginPage = nextUrl.pathname === '/login';
 
-            if (!isLoggedIn && !isLoginPage) {
-                return Response.redirect(new URL('/login', nextUrl));
+            const isOnMyLessons = nextUrl.pathname.startsWith('/my-lessons');
+            if (isOnMyLessons) {
+                if (isLoggedIn) return true;
+                return false;
             }
-
-            if (isLoggedIn && isLoginPage) {
-                return Response.redirect(new URL('/my-lessons', nextUrl));
+            else if (isLoggedIn) {
+                return Response.redirect(new URL('/my-lessons/', nextUrl));
             }
-
             return true;
         },
         session: ({ session, token }) => ({
