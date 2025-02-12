@@ -32,7 +32,7 @@ export default function Simuation() {
       )}
 
       <div className="mt-[50px]"></div>
-      <BottomNavigation backUrl={`/my-lessons/${id}/instruction`} nextUrl={`/my-lessons/${id}/summary`} nextBtnName="Next" />
+      <BottomNavigation backUrl={`/my-lessons/${id}/question`} nextUrl={`/my-lessons/${id}/summary`} nextBtnName="Next" />
       <div className="mb-[50px]"></div>
     </div>
   );

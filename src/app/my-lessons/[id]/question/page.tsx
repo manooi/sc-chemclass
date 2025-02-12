@@ -70,8 +70,8 @@ export default function QuestionPage() {
             question={questionsAnswers}
           ></HypothesisVaraibleDefinition>
           <BottomNavigation
-            backUrl={`/my-lessons/${id}`}
-            nextUrl={`/my-lessons/${id}/instruction`}
+            backUrl={`/my-lessons/${id}/equipment`}
+            nextUrl={`/my-lessons/${id}/simulation`}
           />
           <div className="mb-[50px]"></div>
         </div>

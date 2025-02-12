@@ -55,8 +55,8 @@ export default function Instruction() {
 
       <div className="mt-12">
         <BottomNavigation
-          backUrl={`/my-lessons/${id}/question`}
-          nextUrl={`/my-lessons/${id}/simulation`}
+          backUrl={`/my-lessons/${id}`}
+          nextUrl={`/my-lessons/${id}/equipment`}
         />
         <div className="mb-[50px]"></div>
       </div>

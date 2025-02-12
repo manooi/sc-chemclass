@@ -12,8 +12,8 @@ export default function Home() {
 
   const router = useRouter();
 
-  function goToQuestion(no: string) {
-    router.push(`/my-lessons/${no}/question`);
+  function goToInstruction(no: string) {
+    router.push(`/my-lessons/${no}/instruction`);
   }
 
   return (
@@ -40,7 +40,7 @@ export default function Home() {
             <BottomNavigation
               backUrl={`/my-lessons`}
             />
-            <img className="cursor-pointer" onClick={() => goToQuestion(id)} src="/image/start-button.png" width={170} height={'auto'} />
+            <img className="cursor-pointer" onClick={() => goToInstruction(id)} src="/image/start-button.png" width={170} height={'auto'} />
           </div>
         </div>
 
@@ -66,7 +66,7 @@ export default function Home() {
             width={1150}
           />
           <div
-            onClick={() => goToQuestion(id)}
+            onClick={() => goToInstruction(id)}
             className="absolute cursor-pointer right-0 bottom-0 h-[31%] w-[16%] z-10"
           ></div>
         </div>
