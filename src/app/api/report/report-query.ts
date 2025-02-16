@@ -18,7 +18,7 @@ export async function getQuery(lessonId: number) {
     const questions = await getQuestionIdsLessonId(lessonId);
     for (let i = 0; i < questions.length; i++) {
         const questionId = questions[i].question_id;
-        const question = questions[i].hypothesis ? questions[i].hypothesis + questions[i].question : questions[i].question;
+        const question = questions[i].question;
         let subQ = `MAX(CASE WHEN a.question_id = ${questionId} THEN a.answer END) AS '${question}'`;
         // let subQ = `MAX(CASE WHEN a.question_id = ${questionId} THEN a.answer END) AS question_${questionId}`;
         if (i !== (questions.length - 1)) {
