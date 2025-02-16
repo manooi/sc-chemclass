@@ -1,26 +1,26 @@
-import { SummaryQuestion } from "../../lessons";
+import { ExperimentQuestion } from "../../lessons";
 import BottomNavigation from "../../bottom-navigation";
-import { getSummaryQuestions } from "@/app/data-access/question";
+import { getlastPageQuestions } from "@/app/data-access/question";
 import { finalSubmit } from "./action";
 
 export default async function Summary(props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
   const id = params.id;
-  const summaryQuestion = await getSummaryQuestions(+id);
+  const {experimentQuestion, summaryQuestion } = await getlastPageQuestions(+id);
 
-  function isSameGroup(item: SummaryQuestion, idx: number) {
-    return item.group == summaryQuestion[idx - 1]?.group;
+  function isSameGroup(item: ExperimentQuestion, idx: number) {
+    return item.group == experimentQuestion[idx - 1]?.group;
   }
 
   return (
     <form action={finalSubmit}>
-      <input hidden type="text" name="questionIds" defaultValue={summaryQuestion.map((i)=> i.questionId).join(",")}/>
+      <input hidden type="text" name="questionIds" defaultValue={experimentQuestion.map((i)=> i.questionId).join(",")}/>
       <h1 className="text-[1.5rem] md:text-3xl font-bold mt-6">
-        สรุปและอภิปรายผลการทดลอง
+        คำถามท้ายการทดลอง
       </h1>
 
       <div className="mt-8">
-        {summaryQuestion.map((i, idx) => {
+        {experimentQuestion.map((i, idx) => {
           const sameGroup = isSameGroup(i, idx);
           return (
             <div key={idx}>
@@ -47,6 +47,21 @@ export default async function Summary(props: { params: Promise<{ id: string }> }
             </div>
           );
         })}
+      </div>
+
+      <h1 className="text-[1.5rem] md:text-3xl font-bold mt-8">
+        สรุปและอภิปรายผลการทดลอง
+      </h1>
+
+      <div className="mt-3">
+          <input type="hidden" name="summaryQuestionId" defaultValue={summaryQuestion.questionId}/>
+          <textarea
+            className="mt-1 focus:outline-none w-full lg:w-1/2 p-2"
+            rows={5}
+            placeholder="คำตอบ"
+            name="summaryAnswer"
+            defaultValue={summaryQuestion?.answer ?? ""}
+          ></textarea>
       </div>
 
       <div className="mt-[50px]"></div>

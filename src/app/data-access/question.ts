@@ -1,4 +1,4 @@
-import { Question, SummaryQuestion } from '../my-lessons/lessons';
+import { Question, ExperimentQuestion, SummaryQuestion, Definition } from '../my-lessons/lessons';
 import Prisma from "../lib/prisma";
 import { getAuth } from './auth-util';
 
@@ -6,7 +6,8 @@ export enum QUESTION_TYPE_ID {
     "HYPOTHESIS" = 1,
     "VARIABLES" = 2,
     "DEFINITIONS" = 3,
-    "SUMMARY" = 4
+    "EXPERIMENT" = 4,
+    "SUMMARY" = 5
 }
 
 export async function getQuestionsAnswers(lessonId: number) {
@@ -20,7 +21,7 @@ export async function getQuestionsAnswers(lessonId: number) {
                 where:
                 {
                     lesson_id: lessonId,
-                    NOT: { question_type_id: QUESTION_TYPE_ID.SUMMARY }
+                    NOT: { question_type_id: QUESTION_TYPE_ID.EXPERIMENT }
                 },
                 orderBy: [
                     {
@@ -35,50 +36,46 @@ export async function getQuestionsAnswers(lessonId: number) {
         );
 
         const question: Question = {
-            hypos: [],
+            hypo: {},
             vairable: {
                 variables: [],
                 dependents: []
             },
-            definition: ''
+            definitions: []
         }
 
         for (let q of questions) {
-            const fisrtAnswerOfNull = q.answers[0]?.answer ?? null;
+            const fisrtAnswerOrNull = q.answers[0]?.answer ?? null;
             switch (q.question_type_id) {
                 case QUESTION_TYPE_ID.HYPOTHESIS:
-                    question.hypos.push({
-                        questionId: q.question_id,
-                        hypothesis: q.hypothesis,
-                        question: q.question,
-                        upText: q.up_text,
-                        downText: q.down_text,
-                        moreText: q.more_text,
-                        answer: fisrtAnswerOfNull
-                    });
+                    question.hypo.questionId = q.question_id;
+                    question.hypo.answer = fisrtAnswerOrNull;
                     break;
                 case QUESTION_TYPE_ID.VARIABLES:
                     if (q.seq == 1) {
                         const splittedOptions = q.variables_options?.split(";") ?? [];
                         question.vairable.variables.push(...splittedOptions);
                         question.vairable.varQuestionId = q.question_id;
-                        question.vairable.varAnswer = fisrtAnswerOfNull
+                        question.vairable.varAnswer = fisrtAnswerOrNull
                     }
                     else if (q.seq == 2) {
                         const splittedOptions = q.variables_options?.split(";") ?? [];
                         question.vairable.dependents.push(...splittedOptions);
                         question.vairable.depQuestionId = q.question_id;
-                        question.vairable.depAnswer = fisrtAnswerOfNull
+                        question.vairable.depAnswer = fisrtAnswerOrNull
                     }
                     else if (q.seq == 3) {
                         question.controlVariableQuestionId = q.question_id;
-                        question.controlVariableAnswer = fisrtAnswerOfNull;
+                        question.controlVariableAnswer = fisrtAnswerOrNull;
                     }
                     break;
                 case QUESTION_TYPE_ID.DEFINITIONS:
-                    question.definition = q.question;
-                    question.definitionQuestionId = q.question_id;
-                    question.definitionAnswer = fisrtAnswerOfNull;
+                    const def: Definition = {
+                        definition: q.question,
+                        definitionQuestionId: q.question_id,
+                        definitionAnswer: fisrtAnswerOrNull
+                    } 
+                    question.definitions.push(def);
                     break;
                 default:
                     break;
@@ -92,13 +89,16 @@ export async function getQuestionsAnswers(lessonId: number) {
     }
 }
 
-export async function getSummaryQuestions(lessonId: number) {
+export async function getlastPageQuestions(lessonId: number) {
     const { username } = await getAuth();
     const prisma = Prisma;
     const questions = await prisma.question.findMany({
         where: {
             lesson_id: lessonId,
-            question_type_id: QUESTION_TYPE_ID.SUMMARY
+            OR: [
+                { question_type_id: QUESTION_TYPE_ID.EXPERIMENT },
+                { question_type_id: QUESTION_TYPE_ID.SUMMARY }
+            ]
         },
         orderBy: [
             {
@@ -111,24 +111,28 @@ export async function getSummaryQuestions(lessonId: number) {
         include: { answers: { where: { username: username } } }
     });
 
-    const summaryQuestions: SummaryQuestion[] = [];
+    const experimentQuestion: ExperimentQuestion[] = [];
+    const summaryQuestion: SummaryQuestion = {}
 
     for (let q of questions) {
         switch (q.question_type_id) {
-            case QUESTION_TYPE_ID.SUMMARY:
-                summaryQuestions.push({
+            case QUESTION_TYPE_ID.EXPERIMENT:
+                experimentQuestion.push({
                     questionId: q.question_id,
                     group: q.group,
                     question: q.question,
-                    moreText: q.more_text,
                     textRow: q.text_row,
                     answer: q.answers[0]?.answer ?? null
                 });
+                break;
+            case QUESTION_TYPE_ID.SUMMARY:
+                summaryQuestion.questionId = q.question_id
+                summaryQuestion.answer = q.answers[0]?.answer ?? null;
                 break;
             default:
                 break;
         }
     }
 
-    return summaryQuestions;
+    return { experimentQuestion, summaryQuestion };
 }

@@ -27,10 +27,6 @@ model Question {
   question_type_id  Int
   question          String
   seq               Int
-  hypothesis        String?
-  up_text           String?
-  down_text         String?
-  more_text         String?
   variables_options String?
   group             Int?
   text_row          Int?

@@ -16,6 +16,8 @@ export default function Home() {
     router.push(`/my-lessons/${no}/instruction`);
   }
 
+  const height = id == '3' ? '600px' : '500px';
+
   return (
     <>
       <div className="flex justify-center w-full h-full mx-auto mt-4 md:mt-10">
@@ -61,9 +63,8 @@ export default function Home() {
             </ul>
           </div>
           <img
-            className=""
+            className={`md:h-[${height}] xl:h-[550px]`}
             src="/image/boardv2.png"
-            width={1150}
           />
           <div
             onClick={() => goToInstruction(id)}

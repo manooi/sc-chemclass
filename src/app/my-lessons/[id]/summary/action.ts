@@ -22,6 +22,10 @@ export async function finalSubmit(formData: FormData) {
        await saveAnswer(+questionIds[i], answers[i]) 
     }
 
+    const summaryQuestionId = formData.get('summaryQuestionId') as string;
+    const summaryAnswer = formData.get('summaryAnswer') as string;
+    await saveAnswer(+summaryQuestionId, summaryAnswer);
+
     revalidatePath('/my-lessons/[id]/summary');
     redirect('/my-lessons');
 }
