@@ -78,7 +78,7 @@ export default function HypothesisVaraibleDefinition({
 
       {/* นิยาม */}
       <div className="border border-solid border-gray-200 rounded-lg p-4 bg-white">
-        <h2 className="text-xl font-bold mb-3">นิยมเชิงปฏิบัติการ</h2>
+        <h2 className="text-xl font-bold mb-3">นิยามเชิงปฏิบัติการ</h2>
 
         {question.definitions.map((i, _) => {
           return (
